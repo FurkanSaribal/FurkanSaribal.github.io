@@ -1,407 +1,207 @@
 <!DOCTYPE html>
 <html lang="tr">
-
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Furkan Sarıbal • Portföy</title>
-    <meta name="description"
-        content="Furkan Sarıbal'ın çalışmalarını, projelerini ve iletişim bilgilerini içeren kişisel portföy sitesi." />
-    <meta name="theme-color" content="#0ea5e9" />
-    <meta property="og:title" content="Furkan Sarıbal • Portföy" />
-    <meta property="og:description" content="Projelerim, deneyimlerim ve iletişim." />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://furkansaribal.github.io/" />
-    <style>
-        :root {
-            --bg: #0b1020;
-            --card: #10172a;
-            --muted: #94a3b8;
-            --fg: #e2e8f0;
-            --acc: #38bdf8;
-            --ring: rgba(56, 189, 248, .25);
-        }
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Furkan Sarıbal • Portföy</title>
+  <meta name="description" content="Furkan Sarıbal'ın çalışmalarını, projelerini ve iletişim bilgilerini içeren kişisel portföy sitesi." />
+  <meta name="theme-color" content="#0ea5e9" />
+  <meta property="og:title" content="Furkan Sarıbal • Portföy" />
+  <meta property="og:description" content="Projelerim, deneyimlerim ve iletişim." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://furkansaribal.github.io/" />
+  <style>
+    :root{
+      --bg: #0b1020;
+      --card:#10172a;
+      --muted:#94a3b8;
+      --fg:#e2e8f0;
+      --acc:#38bdf8;
+      --ring: rgba(56,189,248,.25);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font:16px/1.6 ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--fg); background:radial-gradient(1200px 800px at 80% -10%,rgba(56,189,248,.08),transparent 60%), var(--bg);
+      letter-spacing:.2px;
+    }
+    a{color:var(--acc); text-decoration:none}
+    a:hover{text-decoration:underline}
+    .container{max-width:1000px; margin:0 auto; padding:24px}
+    header{display:flex; gap:16px; align-items:center; justify-content:space-between; padding:12px 0}
+    .brand{display:flex; align-items:center; gap:12px}
+    .avatar{width:44px; height:44px; border-radius:50%; background:linear-gradient(135deg,#38bdf8,#6366f1); box-shadow:0 0 0 4px var(--ring)}
+    nav{display:flex; gap:18px}
+    nav a{opacity:.9}
+    nav a.active, nav a:hover{opacity:1}
+    .hero{display:grid; grid-template-columns:1.3fr 1fr; gap:28px; padding:48px 0}
+    .hero h1{margin:0 0 8px; font-size:clamp(28px,4vw,40px); line-height:1.15}
+    .hero p{color:var(--muted); margin:0 0 18px}
+    .hero .cta{display:flex; gap:12px; flex-wrap:wrap}
+    .btn{display:inline-flex; align-items:center; gap:10px; padding:10px 14px; border-radius:14px; background:var(--acc); color:#031018; font-weight:700; box-shadow:0 10px 25px rgba(56,189,248,.25); border:1px solid rgba(255,255,255,.05)}
+    .btn.secondary{background:transparent; color:var(--fg); border:1px solid #1f2a44}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,.02), transparent), var(--card); border:1px solid rgba(255,255,255,.06); border-radius:18px; padding:18px; box-shadow:0 10px 30px rgba(0,0,0,.25)}
+    .grid{display:grid; grid-template-columns:repeat(12,1fr); gap:18px}
+    .col-12{grid-column:span 12}
+    .col-6{grid-column:span 12}
+    @media(min-width:820px){.col-6{grid-column:span 6}}
+    .kicker{font-size:12px; letter-spacing:.3em; text-transform:uppercase; color:var(--muted)}
+    .list{display:flex; flex-direction:column; gap:12px; margin:0; padding:0; list-style:none}
+    .project{display:flex; gap:14px; align-items:flex-start}
+    .badge{font-size:12px; border:1px solid #203050; color:var(--fg); padding:3px 8px; border-radius:999px; opacity:.85}
+    footer{padding:32px 0; color:var(--muted); text-align:center}
+    .tagbar{display:flex; gap:8px; flex-wrap:wrap; margin-top:6px}
+    .tag{font-size:12px; color:#a5b4fc; background:rgba(99,102,241,.08); border:1px solid rgba(99,102,241,.25); padding:4px 8px; border-radius:999px}
+    .visually-hidden{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0)}
+    /* --- Mobile tweaks: tipografi, boşluk, grid --- */
+  @media (max-width: 640px) {
+    .container { padding: 16px; }
+    header { padding: 6px 0; }
 
-        * {
-            box-sizing: border-box
-        }
+    .hero {
+      grid-template-columns: 1fr;
+      gap: 18px;
+      padding: 28px 0;
+    }
 
-        html,
-        body {
-            height: 100%
-        }
+    .hero h1 {
+      font-size: clamp(22px, 7vw, 28px);
+      line-height: 1.2;
+      letter-spacing: 0;
+      margin-bottom: 6px;
+    }
 
-        body {
-            margin: 0;
-            font: 16px/1.6 ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
-            color: var(--fg);
-            background: radial-gradient(1200px 800px at 80% -10%, rgba(56, 189, 248, .08), transparent 60%), var(--bg);
-            letter-spacing: .2px;
-        }
+    .hero p {
+      font-size: 14.5px;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
 
-        a {
-            color: var(--acc);
-            text-decoration: none
-        }
+    .btn {
+      width: 100%;
+      justify-content: center;
+      padding: 12px 14px;
+      border-radius: 12px;
+    }
 
-        a:hover {
-            text-decoration: underline
-        }
+    .card {
+      padding: 14px;
+      border-radius: 16px;
+      box-shadow: 0 8px 18px rgba(0,0,0,.25);
+    }
 
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 24px
-        }
-
-        header {
-            display: flex;
-            gap: 16px;
-            align-items: center;
-            justify-content: space-between;
-            padding: 12px 0
-        }
-
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 12px
-        }
-
-        .avatar {
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #38bdf8, #6366f1);
-            box-shadow: 0 0 0 4px var(--ring)
-        }
-
-        nav {
-            display: flex;
-            gap: 18px
-        }
-
-        nav a {
-            opacity: .9
-        }
-
-        nav a.active,
-        nav a:hover {
-            opacity: 1
-        }
-
-        .hero {
-            display: grid;
-            grid-template-columns: 1.3fr 1fr;
-            gap: 28px;
-            padding: 48px 0
-        }
-
-        .hero h1 {
-            margin: 0 0 8px;
-            font-size: clamp(28px, 4vw, 40px);
-            line-height: 1.15
-        }
-
-        .hero p {
-            color: var(--muted);
-            margin: 0 0 18px
-        }
-
-        .hero .cta {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 10px 14px;
-            border-radius: 14px;
-            background: var(--acc);
-            color: #031018;
-            font-weight: 700;
-            box-shadow: 0 10px 25px rgba(56, 189, 248, .25);
-            border: 1px solid rgba(255, 255, 255, .05)
-        }
-
-        .btn.secondary {
-            background: transparent;
-            color: var(--fg);
-            border: 1px solid #1f2a44
-        }
-
-        .card {
-            background: linear-gradient(180deg, rgba(255, 255, 255, .02), transparent), var(--card);
-            border: 1px solid rgba(255, 255, 255, .06);
-            border-radius: 18px;
-            padding: 18px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, .25)
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(12, 1fr);
-            gap: 18px
-        }
-
-        .col-12 {
-            grid-column: span 12
-        }
-
-        .col-6 {
-            grid-column: span 12
-        }
-
-        @media(min-width:820px) {
-            .col-6 {
-                grid-column: span 6
-            }
-        }
-
-        .kicker {
-            font-size: 12px;
-            letter-spacing: .3em;
-            text-transform: uppercase;
-            color: var(--muted)
-        }
-
-        .list {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin: 0;
-            padding: 0;
-            list-style: none
-        }
-
-        .project {
-            display: flex;
-            gap: 14px;
-            align-items: flex-start
-        }
-
-        .badge {
-            font-size: 12px;
-            border: 1px solid #203050;
-            color: var(--fg);
-            padding: 3px 8px;
-            border-radius: 999px;
-            opacity: .85
-        }
-
-        footer {
-            padding: 32px 0;
-            color: var(--muted);
-            text-align: center
-        }
-
-        .tagbar {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-            margin-top: 6px
-        }
-
-        .tag {
-            font-size: 12px;
-            color: #a5b4fc;
-            background: rgba(99, 102, 241, .08);
-            border: 1px solid rgba(99, 102, 241, .25);
-            padding: 4px 8px;
-            border-radius: 999px
-        }
-
-        .visually-hidden {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            overflow: hidden;
-            clip: rect(0 0 0 0)
-        }
-
-        @media (max-width: 640px) {
-            .container {
-                padding: 16px;
-            }
-
-            header {
-                padding: 6px 0;
-            }
-
-            .hero {
-                grid-template-columns: 1fr;
-                gap: 18px;
-                padding: 28px 0;
-            }
-
-            .hero h1 {
-                font-size: clamp(22px, 7vw, 28px);
-                line-height: 1.2;
-                letter-spacing: 0;
-                margin-bottom: 6px;
-            }
-
-            .hero p {
-                font-size: 14.5px;
-                color: var(--muted);
-                margin-bottom: 14px;
-            }
-
-            .btn {
-                width: 100%;
-                justify-content: center;
-                padding: 12px 14px;
-                border-radius: 12px;
-            }
-
-            .card {
-                padding: 14px;
-                border-radius: 16px;
-                box-shadow: 0 8px 18px rgba(0, 0, 0, .25);
-            }
-
-            .grid {
-                gap: 14px;
-            }
-
-            .col-6,
-            .col-12 {
-                grid-column: span 12;
-            }
-        }
-    </style>
+    .grid { gap: 14px; }
+    .col-6, .col-12 { grid-column: span 12; }
+  }
+</style>
 </head>
-
 <body>
-    <div class="container">
-        <header>
-            <div class="brand">
-                <div class="avatar" aria-hidden="true"></div>
-                <strong>Furkan Sarıbal</strong>
-            </div>
-            <nav>
-                <a href="#projeler" class="active">Projeler</a>
-                <a href="#hakkimda">Hakkımda</a>
-                <a href="#iletisim">İletişim</a>
-            </nav>
-        </header>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="avatar" aria-hidden="true"></div>
+        <strong>Furkan Sarıbal</strong>
+      </div>
+      <nav>
+        <a href="#projeler" class="active">Projeler</a>
+        <a href="#hakkimda">Hakkımda</a>
+        <a href="#iletisim">İletişim</a>
+      </nav>
+    </header>
 
-        <section class="hero">
-            <div>
-                <div class="kicker">Merhaba! 👋</div>
-                <h1>Ürün odaklı, sade ve hızlı web deneyimleri geliştiriyorum.</h1>
-                <p>Front‑end ağırlıklı çalışıyorum; React, TypeScript ve modern CSS ile ölçeklenebilir arayüzler
-                    kuruyorum. Aşağıda öne çıkan işlerden bir seçki var.</p>
-                <div class="cta">
-                    <a class="btn" href="#projeler">Projeleri gör</a>
-                    <a class="btn secondary" href="#iletisim">İletişime geç</a>
-                </div>
-            </div>
-            <div class="card">
-                <div class="kicker">Hızlı Özgeçmiş</div>
-                <ul class="list" aria-label="Öne çıkan noktalar">
-                    <li>• <strong>3+ yıl</strong> web geliştirme deneyimi</li>
-                    <li>• Odak: <strong>React, Next.js, Node</strong></li>
-                    <li>• İlgi: performans, UX, erişilebilirlik</li>
-                    <li>• Şehir: İstanbul</li>
-                </ul>
-                <div class="tagbar" aria-label="Teknolojiler">
-                    <span class="tag">React</span>
-                    <span class="tag">TypeScript</span>
-                    <span class="tag">Next.js</span>
-                    <span class="tag">Node.js</span>
-                    <span class="tag">Tailwind</span>
-                </div>
-            </div>
-        </section>
+    <section class="hero">
+      <div>
+        <div class="kicker">Merhaba! 👋</div>
+        <h1>Ürün odaklı, sade ve hızlı web deneyimleri geliştiriyorum.</h1>
+        <p>Front‑end ağırlıklı çalışıyorum; React, TypeScript ve modern CSS ile ölçeklenebilir arayüzler kuruyorum. Aşağıda öne çıkan işlerden bir seçki var.</p>
+        <div class="cta">
+          <a class="btn" href="#projeler">Projeleri gör</a>
+          <a class="btn secondary" href="#iletisim">İletişime geç</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="kicker">Hızlı Özgeçmiş</div>
+        <ul class="list" aria-label="Öne çıkan noktalar">
+          <li>• <strong>3+ yıl</strong> web geliştirme deneyimi</li>
+          <li>• Odak: <strong>React, Next.js, Node</strong></li>
+          <li>• İlgi: performans, UX, erişilebilirlik</li>
+          <li>• Şehir: İstanbul</li>
+        </ul>
+        <div class="tagbar" aria-label="Teknolojiler">
+          <span class="tag">React</span>
+          <span class="tag">TypeScript</span>
+          <span class="tag">Next.js</span>
+          <span class="tag">Node.js</span>
+          <span class="tag">Tailwind</span>
+        </div>
+      </div>
+    </section>
 
-        <section id="projeler" class="grid" aria-labelledby="projeler-baslik">
-            <h2 id="projeler-baslik" class="visually-hidden">Projeler</h2>
+    <section id="projeler" class="grid" aria-labelledby="projeler-baslik">
+      <h2 id="projeler-baslik" class="visually-hidden">Projeler</h2>
 
-            <article class="card col-6 project">
-                <div
-                    style="width:14px; height:14px; margin-top:6px; border-radius:3px; background:linear-gradient(135deg,#38bdf8,#06b6d4)">
-                </div>
-                <div>
-                    <h3 style="margin:0 0 4px">Proje A — Dashboard</h3>
-                    <p style="margin:0 0 6px; color:var(--muted)">Gerçek zamanlı verilerle etkileşimli yönetim paneli.
-                        SSR ve API optimizasyonları ile <em>95+ Lighthouse</em>.</p>
-                    <span class="badge">React • Next.js • Prisma</span>
-                </div>
-            </article>
+      <article class="card col-6 project">
+        <div style="width:14px; height:14px; margin-top:6px; border-radius:3px; background:linear-gradient(135deg,#38bdf8,#06b6d4)"></div>
+        <div>
+          <h3 style="margin:0 0 4px">Proje A — Dashboard</h3>
+          <p style="margin:0 0 6px; color:var(--muted)">Gerçek zamanlı verilerle etkileşimli yönetim paneli. SSR ve API optimizasyonları ile <em>95+ Lighthouse</em>.</p>
+          <span class="badge">React • Next.js • Prisma</span>
+        </div>
+      </article>
 
-            <article class="card col-6 project">
-                <div
-                    style="width:14px; height:14px; margin-top:6px; border-radius:3px; background:linear-gradient(135deg,#6366f1,#22d3ee)">
-                </div>
-                <div>
-                    <h3 style="margin:0 0 4px">Proje B — E‑ticaret</h3>
-                    <p style="margin:0 0 6px; color:var(--muted)">Ödeme entegrasyonları ve ürün arama için hızlı
-                        önbellekleme stratejileri.</p>
-                    <span class="badge">Next.js • Stripe • Redis</span>
-                </div>
-            </article>
+      <article class="card col-6 project">
+        <div style="width:14px; height:14px; margin-top:6px; border-radius:3px; background:linear-gradient(135deg,#6366f1,#22d3ee)"></div>
+        <div>
+          <h3 style="margin:0 0 4px">Proje B — E‑ticaret</h3>
+          <p style="margin:0 0 6px; color:var(--muted)">Ödeme entegrasyonları ve ürün arama için hızlı önbellekleme stratejileri.</p>
+          <span class="badge">Next.js • Stripe • Redis</span>
+        </div>
+      </article>
 
-            <article class="card col-6 project">
-                <div
-                    style="width:14px; height:14px; margin-top:6px; border-radius:3px; background:linear-gradient(135deg,#10b981,#84cc16)">
-                </div>
-                <div>
-                    <h3 style="margin:0 0 4px">Proje C — Mobil Web App</h3>
-                    <p style="margin:0 0 6px; color:var(--muted)">PWA desteği, offline-first veri katmanı, performans
-                        odaklı mimari.</p>
-                    <span class="badge">PWA • React • Workbox</span>
-                </div>
-            </article>
+      <article class="card col-6 project">
+        <div style="width:14px; height:14px; margin-top:6px; border-radius:3px; background:linear-gradient(135deg,#10b981,#84cc16)"></div>
+        <div>
+          <h3 style="margin:0 0 4px">Proje C — Mobil Web App</h3>
+          <p style="margin:0 0 6px; color:var(--muted)">PWA desteği, offline-first veri katmanı, performans odaklı mimari.</p>
+          <span class="badge">PWA • React • Workbox</span>
+        </div>
+      </article>
 
-            <article class="card col-6 project">
-                <div
-                    style="width:14px; height:14px; margin-top:6px; border-radius:3px; background:linear-gradient(135deg,#f59e0b,#ef4444)">
-                </div>
-                <div>
-                    <h3 style="margin:0 0 4px">Açık Kaynak — UI Kütüphanesi</h3>
-                    <p style="margin:0 0 6px; color:var(--muted)">Küçük ama işlevsel bileşen seti: buton, kart, modal,
-                        toast…</p>
-                    <span class="badge">TypeScript • Vite • Vitest</span>
-                </div>
-            </article>
-        </section>
+      <article class="card col-6 project">
+        <div style="width:14px; height:14px; margin-top:6px; border-radius:3px; background:linear-gradient(135deg,#f59e0b,#ef4444)"></div>
+        <div>
+          <h3 style="margin:0 0 4px">Açık Kaynak — UI Kütüphanesi</h3>
+          <p style="margin:0 0 6px; color:var(--muted)">Küçük ama işlevsel bileşen seti: buton, kart, modal, toast…</p>
+          <span class="badge">TypeScript • Vite • Vitest</span>
+        </div>
+      </article>
+    </section>
 
-        <section id="hakkimda" class="grid" style="margin-top:32px">
-            <div class="col-12 card">
-                <div class="kicker">Hakkımda</div>
-                <p style="margin:8px 0 0; color:var(--muted)">
-                    Merhaba! Ben Furkan Sarıbal. Ürün vizyonunu piksellere dönüştürmeyi seven bir front‑end
-                    geliştiricisiyim. Performans ve kullanıcı deneyimi benim için öncelik. Ekip çalışmasına açık, temiz
-                    kod ve açık iletişim yanlısıyım.
-                </p>
-            </div>
-        </section>
+    <section id="hakkimda" class="grid" style="margin-top:32px">
+      <div class="col-12 card">
+        <div class="kicker">Hakkımda</div>
+        <p style="margin:8px 0 0; color:var(--muted)">
+          Merhaba! Ben Furkan Sarıbal. Ürün vizyonunu piksellere dönüştürmeyi seven bir front‑end geliştiricisiyim. Performans ve kullanıcı deneyimi benim için öncelik. Ekip çalışmasına açık, temiz kod ve açık iletişim yanlısıyım.
+        </p>
+      </div>
+    </section>
 
-        <section id="iletisim" class="grid" style="margin:32px 0">
-            <div class="col-12 card">
-                <div class="kicker">İletişim</div>
-                <p style="margin:8px 0 12px; color:var(--muted)">Projeler hakkında konuşmak istersen e‑posta
-                    gönderebilirsin.</p>
-                <p style="margin:0">
-                    E-posta: <a href="mailto:furkansaribalbus@gmail.com">furkansaribalbus@gmail.com</a> ·
-                    GitHub: <a href="https://github.com/FurkanSaribal">@FurkanSaribal</a> ·
-                    LinkedIn: <a href="https://linkedin.com/in/furkansaribal">linkedin.com/in/furkansaribal</a>
-                </p>
-            </div>
-        </section>
+    <section id="iletisim" class="grid" style="margin:32px 0">
+      <div class="col-12 card">
+        <div class="kicker">İletişim</div>
+        <p style="margin:8px 0 12px; color:var(--muted)">Projeler hakkında konuşmak istersen e‑posta gönderebilirsin.</p>
+        <p style="margin:0">E‑posta: <a href="mailto:furkansaribalbus@gmail.com">furkansaribalbus@gmail.com</a> · GitHub: <a href="https://github.com/FurkanSaribal">@FurkanSaribal</a> · LinkedIn: <a href="https://www.linkedin.com/in/furkan-sar%C4%B1bal-ba13a9277/">linkedin.com/in/furkan-sar%C4%B1bal-ba13a9277</a></p>
+      </div>
+    </section>
 
-        <footer>
-            © <span id="yil"></span> Furkan Sarıbal. Tüm hakları saklıdır.
-        </footer>
-    </div>
+    <footer>
+      © <span id="yil"></span> Furkan Sarıbal. Tüm hakları saklıdır.
+    </footer>
+  </div>
 
-    <script>
-        document.getElementById('yil').textContent = new Date().getFullYear();
-    </script>
+  <script>
+    document.getElementById('yil').textContent = new Date().getFullYear();
+  </script>
 </body>
-
 </html>
