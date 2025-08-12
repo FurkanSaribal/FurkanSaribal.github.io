@@ -221,6 +221,57 @@
             overflow: hidden;
             clip: rect(0 0 0 0)
         }
+
+        @media (max-width: 640px) {
+            .container {
+                padding: 16px;
+            }
+
+            header {
+                padding: 6px 0;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 18px;
+                padding: 28px 0;
+            }
+
+            .hero h1 {
+                font-size: clamp(22px, 7vw, 28px);
+                line-height: 1.2;
+                letter-spacing: 0;
+                margin-bottom: 6px;
+            }
+
+            .hero p {
+                font-size: 14.5px;
+                color: var(--muted);
+                margin-bottom: 14px;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+                padding: 12px 14px;
+                border-radius: 12px;
+            }
+
+            .card {
+                padding: 14px;
+                border-radius: 16px;
+                box-shadow: 0 8px 18px rgba(0, 0, 0, .25);
+            }
+
+            .grid {
+                gap: 14px;
+            }
+
+            .col-6,
+            .col-12 {
+                grid-column: span 12;
+            }
+        }
     </style>
 </head>
 
@@ -338,7 +389,7 @@
                 <p style="margin:0">
                     E-posta: <a href="mailto:furkansaribalbus@gmail.com">furkansaribalbus@gmail.com</a> ·
                     GitHub: <a href="https://github.com/FurkanSaribal">@FurkanSaribal</a> ·
-                    LinkedIn: <a href="https://linkedin.com/in/furkan-saribal">linkedin.com/in/furkansaribal</a>
+                    LinkedIn: <a href="https://linkedin.com/in/furkansaribal">linkedin.com/in/furkansaribal</a>
                 </p>
             </div>
         </section>
