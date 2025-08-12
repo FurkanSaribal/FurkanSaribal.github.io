@@ -31,11 +31,11 @@
     .container{max-width:1000px; margin:0 auto; padding:24px}
     header{display:flex; gap:16px; align-items:center; justify-content:space-between; padding:12px 0}
     .brand{display:flex; align-items:center; gap:12px}
-    .avatar{width:44px; height:44px; border-radius:50%; background:linear-gradient(135deg,#38bdf8,#6366f1); box-shadow:0 0 0 4px var(--ring)}
+    .avatar{aspect-ratio:1/1; flex:0 0 auto; width:44px; height:44px; border-radius:50%; background:linear-gradient(135deg,#38bdf8,#6366f1); box-shadow:0 0 0 4px var(--ring)}
     nav{display:flex; gap:18px}
     nav a{opacity:.9}
     nav a.active, nav a:hover{opacity:1}
-    .hero{display:grid; grid-template-columns:1.3fr 1fr; gap:28px; padding:48px 0}
+    .hero{display:grid; grid-template-columns:1.3fr 1fr; gap:28px; padding:48px 0; margin-top:0}
     .hero h1{margin:0 0 8px; font-size:clamp(28px,4vw,40px); line-height:1.15}
     .hero p{color:var(--muted); margin:0 0 18px}
     .hero .cta{display:flex; gap:12px; flex-wrap:wrap}
@@ -54,47 +54,26 @@
     .tagbar{display:flex; gap:8px; flex-wrap:wrap; margin-top:6px}
     .tag{font-size:12px; color:#a5b4fc; background:rgba(99,102,241,.08); border:1px solid rgba(99,102,241,.25); padding:4px 8px; border-radius:999px}
     .visually-hidden{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0)}
-    /* --- Mobile tweaks: tipografi, boşluk, grid --- */
-  @media (max-width: 640px) {
-    .container { padding: 16px; }
-    header { padding: 6px 0; }
-
-    .hero {
-      grid-template-columns: 1fr;
-      gap: 18px;
-      padding: 28px 0;
+    .contact {list-style:none; padding:0; margin:8px 0 0; display:grid; gap:8px;}
+    .contact li {display:flex; gap:8px; flex-wrap:wrap;}
+    .contact a {word-break:break-all;}
+    @media (max-width: 640px) {
+      header { flex-wrap: wrap; row-gap: 8px; }
+      .brand { flex: 1 1 auto; }
+      nav { width: 100%; display: flex; gap: 12px; }
+      .container { padding-top: 18px; }
+      .hero { margin-top: 6px; grid-template-columns:1fr; gap:18px; padding:28px 0; }
+      .hero h1 { font-size: clamp(24px, 8vw, 32px); line-height: 1.18; margin-bottom: 8px; }
+      .kicker { font-size: 13.5px; letter-spacing: .18em; opacity: .9; }
+      .hero p { font-size: 14.5px; margin-bottom: 14px; }
+      .btn { width: 100%; justify-content: center; padding: 12px 14px; border-radius: 12px; }
+      .card { padding: 14px; border-radius: 16px; box-shadow: 0 8px 18px rgba(0,0,0,.25); }
+      .grid { gap: 14px; }
+      .col-6, .col-12 { grid-column: span 12; }
+      .avatar { width:36px; height:36px; }
+      .contact li {flex-direction: column; gap:4px;}
     }
-
-    .hero h1 {
-      font-size: clamp(22px, 7vw, 28px);
-      line-height: 1.2;
-      letter-spacing: 0;
-      margin-bottom: 6px;
-    }
-
-    .hero p {
-      font-size: 14.5px;
-      color: var(--muted);
-      margin-bottom: 14px;
-    }
-
-    .btn {
-      width: 100%;
-      justify-content: center;
-      padding: 12px 14px;
-      border-radius: 12px;
-    }
-
-    .card {
-      padding: 14px;
-      border-radius: 16px;
-      box-shadow: 0 8px 18px rgba(0,0,0,.25);
-    }
-
-    .grid { gap: 14px; }
-    .col-6, .col-12 { grid-column: span 12; }
-  }
-</style>
+  </style>
 </head>
 <body>
   <div class="container">
@@ -191,7 +170,11 @@
       <div class="col-12 card">
         <div class="kicker">İletişim</div>
         <p style="margin:8px 0 12px; color:var(--muted)">Projeler hakkında konuşmak istersen e‑posta gönderebilirsin.</p>
-        <p style="margin:0">E‑posta: <a href="mailto:furkansaribalbus@gmail.com">furkansaribalbus@gmail.com</a> · GitHub: <a href="https://github.com/FurkanSaribal">@FurkanSaribal</a> · LinkedIn: <a href="https://www.linkedin.com/in/furkan-sar%C4%B1bal-ba13a9277/">linkedin.com/in/furkan-sar%C4%B1bal-ba13a9277</a></p>
+        <ul class="contact">
+          <li><strong>E‑posta:</strong> <a href="mailto:furkansaribalbus@gmail.com">furkansaribalbus@gmail.com</a></li>
+          <li><strong>GitHub:</strong> <a href="https://github.com/FurkanSaribal">@FurkanSaribal</a></li>
+          <li><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/furkansaribal">linkedin.com/in/furkansaribal</a></li>
+        </ul>
       </div>
     </section>
 
