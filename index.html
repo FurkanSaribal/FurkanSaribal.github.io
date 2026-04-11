@@ -3,188 +3,811 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Furkan Sarıbal • Portföy</title>
-  <meta name="description" content="Furkan Sarıbal'ın çalışmalarını, projelerini ve iletişim bilgilerini içeren kişisel portföy sitesi." />
-  <meta name="theme-color" content="#0ea5e9" />
-  <meta property="og:title" content="Furkan Sarıbal • Portföy" />
-  <meta property="og:description" content="Projelerim, deneyimlerim ve iletişim." />
+  <title>Furkan Sarıbal | Oyun Geliştirici</title>
+  <meta
+    name="description"
+    content="Furkan Sarıbal'ın oyun geliştirme odaklı, pixel art estetiği taşıyan kişisel portföyü."
+  />
+  <meta name="theme-color" content="#161223" />
+  <meta property="og:title" content="Furkan Sarıbal | Oyun Geliştirici" />
+  <meta
+    property="og:description"
+    content="Pixel art oyun arayüzü gibi tasarlanmış kişisel portföy sayfası."
+  />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://furkansaribal.github.io/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+  />
   <style>
-    :root{
-      --bg: #0b1020;
-      --card:#10172a;
-      --muted:#94a3b8;
-      --fg:#e2e8f0;
-      --acc:#38bdf8;
-      --ring: rgba(56,189,248,.25);
+    :root {
+      --bg: #120f1f;
+      --panel: #221c37;
+      --panel-soft: #2d2448;
+      --panel-bright: #34285a;
+      --text: #f8f4ff;
+      --muted: #b8aed7;
+      --line: #4f4479;
+      --pink: #ff5aa5;
+      --blue: #58d8ff;
+      --green: #95ff7b;
+      --gold: #ffd05a;
+      --red: #ff6b6b;
+      --pixel-font: "Pixelify Sans", cursive;
+      --body-font: "IBM Plex Sans", sans-serif;
     }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0; font:16px/1.6 ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      color:var(--fg); background:radial-gradient(1200px 800px at 80% -10%,rgba(56,189,248,.08),transparent 60%), var(--bg);
-      letter-spacing:.2px;
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--text);
+      font-family: var(--body-font);
+      background:
+        radial-gradient(circle at top left, rgba(88, 216, 255, 0.18), transparent 18rem),
+        radial-gradient(circle at top right, rgba(255, 90, 165, 0.18), transparent 16rem),
+        linear-gradient(180deg, #171227 0%, var(--bg) 44%, #100c1a 100%);
+      position: relative;
+      overflow-x: hidden;
     }
-    a{color:var(--acc); text-decoration:none}
-    a:hover{text-decoration:underline}
-    .container{max-width:1000px; margin:0 auto; padding:24px}
-    header{display:flex; gap:16px; align-items:center; justify-content:space-between; padding:12px 0}
-    .brand{display:flex; align-items:center; gap:12px}
-    .avatar{aspect-ratio:1/1; flex:0 0 auto; width:44px; height:44px; border-radius:50%; background:linear-gradient(135deg,#38bdf8,#6366f1); box-shadow:0 0 0 4px var(--ring)}
-    nav{display:flex; gap:18px}
-    nav a{opacity:.9}
-    nav a.active, nav a:hover{opacity:1}
-    .hero{display:grid; grid-template-columns:1.3fr 1fr; gap:28px; padding:48px 0; margin-top:0}
-    .hero h1{margin:0 0 8px; font-size:clamp(28px,4vw,40px); line-height:1.15}
-    .hero p{color:var(--muted); margin:0 0 18px; font-size:15px; line-height:1.55}
-    .hero .cta{display:flex; gap:12px; flex-wrap:wrap}
-    .btn{display:inline-flex; align-items:center; gap:10px; padding:10px 14px; border-radius:14px; background:var(--acc); color:#031018; font-weight:700; box-shadow:0 10px 25px rgba(56,189,248,.25); border:1px solid rgba(255,255,255,.05)}
-    .btn.secondary{background:transparent; color:var(--fg); border:1px solid #1f2a44}
-    .card{background:linear-gradient(180deg, rgba(255,255,255,.02), transparent), var(--card); border:1px solid rgba(255,255,255,.06); border-radius:18px; padding:18px; box-shadow:0 10px 30px rgba(0,0,0,.25)}
-    .grid{display:grid; grid-template-columns:repeat(12,1fr); gap:18px}
-    .col-12{grid-column:span 12}
-    .col-6{grid-column:span 12}
-    @media(min-width:820px){.col-6{grid-column:span 6}}
-    .kicker{font-size:14px; letter-spacing:.18em; text-transform:uppercase; font-weight:600; opacity:.95; color:var(--acc)}
-    .list{display:flex; flex-direction:column; gap:12px; margin:0; padding:0; list-style:none}
-    .project{display:flex; gap:14px; align-items:flex-start}
-    .badge{font-size:12px; border:1px solid #203050; color:var(--fg); padding:3px 8px; border-radius:999px; opacity:.85}
-    footer{padding:32px 0; color:var(--muted); text-align:center}
-    .tagbar{display:flex; gap:8px; flex-wrap:wrap; margin-top:6px}
-    .tag{font-size:12px; color:#a5b4fc; background:rgba(99,102,241,.08); border:1px solid rgba(99,102,241,.25); padding:4px 8px; border-radius:999px}
-    .visually-hidden{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0)}
-    .contact {list-style:none; padding:0; margin:8px 0 0; display:grid; gap:8px;}
-    .contact li {display:flex; gap:8px; flex-wrap:wrap;}
-    .contact a {word-break:break-all;}
-    @media (max-width: 640px) {
-      header { flex-wrap: wrap; row-gap: 8px; }
-      .brand { flex: 1 1 auto; }
-      nav { width: 100%; display: flex; gap: 12px; }
-      .container { padding-top: 18px; }
-      .hero { margin-top: 6px; grid-template-columns:1fr; gap:18px; padding:28px 0; }
-      .hero h1 { font-size: clamp(24px, 8vw, 32px); line-height: 1.18; margin-bottom: 8px; }
-      .kicker { font-size: 13.5px; letter-spacing: .18em; opacity: .9; }
-      .hero p { font-size: 14.5px; margin-bottom: 14px; }
-      .btn { width: 100%; justify-content: center; padding: 12px 14px; border-radius: 12px; }
-      .card { padding: 14px; border-radius: 16px; box-shadow: 0 8px 18px rgba(0,0,0,.25); }
-      .grid { gap: 14px; }
-      .col-6, .col-12 { grid-column: span 12; }
-      .avatar { width:36px; height:36px; }
-      .contact li {flex-direction: column; gap:4px;}
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+      background-size: 30px 30px;
+      opacity: 0.18;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background: repeating-linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.03) 0,
+        rgba(255, 255, 255, 0.03) 1px,
+        transparent 1px,
+        transparent 4px
+      );
+      opacity: 0.14;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    .page-shell {
+      width: min(calc(100% - 26px), 1180px);
+      margin: 0 auto;
+      padding: 20px 0 52px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .pixel-panel {
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.05), transparent 32%),
+        var(--panel);
+      border: 3px solid #171127;
+      box-shadow: 0 0 0 3px #0d0b16, 0 0 0 6px var(--line);
+      position: relative;
+    }
+
+    .pixel-nav, .hero-card, .hud-card, .section-panel, .footer-bar { padding: 22px; }
+
+    .pixel-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 22px;
+      background:
+        linear-gradient(90deg, rgba(88, 216, 255, 0.09), transparent 32%),
+        linear-gradient(270deg, rgba(255, 90, 165, 0.09), transparent 32%),
+        var(--panel);
+    }
+
+    .brand-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .avatar-box {
+      width: 58px;
+      height: 58px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--pink), var(--blue));
+      box-shadow: 0 0 0 3px #fff;
+      color: #140f20;
+      font-family: var(--pixel-font);
+      font-size: 1.45rem;
+      font-weight: 700;
+      flex: 0 0 auto;
+    }
+
+    .brand-copy h1, .hero-title, .section-head h2, .project-card h3, .hud-title {
+      margin: 0;
+      font-family: var(--pixel-font);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      line-height: 1;
+    }
+
+    .brand-copy h1 { font-size: clamp(1.3rem, 3vw, 2rem); }
+    .brand-copy p {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .nav-links, .hero-actions, .quick-badges, .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .hero-actions {
+      margin-top: 34px;
+    }
+
+    .nav-chip, .hud-button, .quick-badges span {
+      font-family: var(--pixel-font);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      font-size: 0.88rem;
+      border: 0;
+      color: var(--text);
+      background: var(--panel-soft);
+      box-shadow: 0 0 0 3px #0d0b16, 0 0 0 5px rgba(79, 68, 121, 0.9);
+      padding: 11px 13px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      transition: transform 0.18s ease, background-color 0.18s ease;
+    }
+
+    .nav-chip:hover,
+    .nav-chip:focus-visible,
+    .hud-button:hover,
+    .hud-button:focus-visible {
+      transform: translate(-2px, -2px);
+      outline: none;
+    }
+
+    .hud-button.primary {
+      background: linear-gradient(180deg, #ff72b5, var(--pink));
+      color: #140f20;
+      box-shadow: 0 0 0 3px #0d0b16, 0 0 0 6px #ffb2d2;
+    }
+
+    .hud-button.secondary {
+      background: linear-gradient(180deg, #6de4ff, var(--blue));
+      color: #140f20;
+      box-shadow: 0 0 0 3px #0d0b16, 0 0 0 6px #b6f1ff;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(330px, 0.95fr);
+      gap: 22px;
+      margin-bottom: 24px;
+    }
+
+    .hero-card {
+      background:
+        linear-gradient(140deg, rgba(88, 216, 255, 0.12), transparent 34%),
+        linear-gradient(320deg, rgba(255, 90, 165, 0.12), transparent 34%),
+        var(--panel);
+    }
+
+    .section-label, .mini-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--pixel-font);
+      font-size: 0.92rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 18px;
+    }
+
+    .section-head h2,
+    .hero-title {
+      color: var(--gold);
+    }
+
+    .section-label::before, .mini-label::before {
+      content: "";
+      width: 14px;
+      height: 14px;
+      background: var(--gold);
+      box-shadow: 18px 0 0 rgba(255, 208, 90, 0.28);
+    }
+
+    .hero-title {
+      margin-bottom: 18px;
+      font-size: clamp(2.2rem, 7vw, 5.3rem);
+      max-width: 10ch;
+      text-shadow: 4px 4px 0 rgba(0, 0, 0, 0.24);
+    }
+
+    .hero-card .hero-title {
+      margin-top: 0;
+    }
+
+    .hero-card p, .section-head p, .story-card p, .info-card p, .timeline-card p, .contact-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .hud-card {
+      display: grid;
+      gap: 18px;
+      align-content: start;
+      background:
+        linear-gradient(180deg, rgba(149, 255, 123, 0.08), transparent 18%),
+        var(--panel);
+    }
+
+    .hud-header, .section-head, .project-top, .timeline-top, .stat-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .status-pill {
+      padding: 8px 12px;
+      background: rgba(149, 255, 123, 0.14);
+      color: var(--green);
+      font-family: var(--pixel-font);
+      font-size: 0.88rem;
+      text-transform: uppercase;
+      box-shadow: 0 0 0 3px rgba(149, 255, 123, 0.2);
+    }
+
+    .hearts-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      color: var(--red);
+      font-size: 1.4rem;
+    }
+
+    .hearts-row span, .stat-top, .timeline-title, .contact-card strong, .info-card strong, .project-info-value {
+      font-family: var(--pixel-font);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .hearts-row span { color: var(--text); font-size: 0.88rem; margin-left: 6px; }
+    .stat-box { display: grid; gap: 8px; }
+    .stat-top { font-size: 0.82rem; color: var(--muted); }
+    .progress.pixel-progress {
+      height: 18px;
+      border-radius: 0;
+      background: #0f0c1a;
+      border: 3px solid #45376d;
+      overflow: hidden;
+    }
+
+    .progress.pixel-progress .progress-bar {
+      border-radius: 0;
+      background-image: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.14) 0,
+        rgba(255, 255, 255, 0.14) 10px,
+        transparent 10px,
+        transparent 20px
+      );
+    }
+
+    .bar-hp { background-color: var(--red); }
+    .bar-xp { background-color: var(--blue); }
+    .bar-skill { background-color: var(--green); }
+    .bar-gold { background-color: var(--gold); }
+
+    .layout-grid, .timeline, .info-list, .contact-grid {
+      display: grid;
+      gap: 24px;
+    }
+
+    .section-panel { background: linear-gradient(180deg, rgba(88, 216, 255, 0.05), transparent 24%), var(--panel); }
+    .section-head { margin-bottom: 24px; align-items: end; }
+    .section-head h2 { font-size: clamp(1.9rem, 5vw, 3.2rem); }
+    .section-head p { max-width: 56ch; }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .project-card, .story-card, .info-card, .timeline-card, .contact-card {
+      padding: 22px;
+      background: var(--panel-soft);
+      border: 3px solid #171127;
+      box-shadow: 0 0 0 3px #0d0b16, 0 0 0 6px var(--line);
+    }
+
+    .project-card {
+      display: grid;
+      gap: 14px;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 26%),
+        var(--panel-soft);
+    }
+
+    .project-card h3 {
+      font-size: 1.8rem;
+      margin-right: 12px;
+    }
+
+    .project-top {
+      align-items: flex-start;
+    }
+
+    .project-title-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--text);
+      text-decoration: none;
+      text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.24);
+      transition: color 0.18s ease, text-shadow 0.18s ease;
+    }
+
+    .project-title-link:hover,
+    .project-title-link:focus-visible {
+      color: var(--blue);
+      outline: none;
+      text-shadow: 3px 3px 0 rgba(88, 216, 255, 0.18);
+    }
+
+    .project-title-link .bi {
+      color: var(--gold);
+      font-size: 0.82em;
+      text-shadow: none;
+      transform: translateY(-2px);
+      transition: color 0.18s ease;
+    }
+
+    .project-title-link:hover .bi,
+    .project-title-link:focus-visible .bi {
+      color: var(--blue);
+    }
+
+    .platform-chip {
+      width: fit-content;
+      padding: 7px 10px;
+      color: var(--gold);
+      background: #171127;
+      border: 3px solid #0d0b16;
+      box-shadow: inset 0 0 0 3px rgba(255, 208, 90, 0.08);
+      font-family: var(--pixel-font);
+      font-size: 0.78rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .project-info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 10px;
+    }
+
+    .project-info-card {
+      min-height: 62px;
+      display: grid;
+      place-items: center;
+      padding: 12px 10px;
+      background: #171127;
+      border: 3px solid #0d0b16;
+      box-shadow: inset 0 0 0 3px rgba(88, 216, 255, 0.08);
+    }
+
+    .project-info-value {
+      font-size: 0.78rem;
+      line-height: 1.3;
+      color: var(--text);
+      text-align: center;
+    }
+
+    .story-card p + p { margin-top: 16px; }
+    .info-list { gap: 14px; }
+    .info-card strong, .timeline-title, .contact-card strong {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 0.96rem;
+    }
+
+    .timeline { gap: 14px; }
+    .timeline-card {
+      padding-top: 18px;
+      background:
+        linear-gradient(90deg, rgba(255, 208, 90, 0.08), transparent 36%),
+        var(--panel-soft);
+    }
+
+    .timeline-top {
+      margin-bottom: 6px;
+      align-items: flex-start;
+    }
+
+    .contact-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+    .contact-card a {
+      color: var(--blue);
+      word-break: break-word;
+    }
+
+    .contact-card a:hover, .contact-card a:focus-visible {
+      color: #bff3ff;
+      outline: none;
+    }
+
+    .footer-bar {
+      margin-top: 24px;
+      text-align: center;
+      color: var(--muted);
+      font-family: var(--pixel-font);
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid, .project-grid, .contact-grid, .project-info-grid { grid-template-columns: 1fr; }
+      .pixel-nav { flex-direction: column; align-items: start; }
+      .section-head { align-items: start; flex-direction: column; }
+    }
+
+    @media (max-width: 720px) {
+      .page-shell { width: min(calc(100% - 16px), 1180px); padding-top: 12px; }
+      .pixel-nav, .hero-card, .hud-card, .section-panel, .footer-bar { padding: 18px; }
+      .nav-chip, .hud-button { width: 100%; }
+      .hero-actions, .nav-links { display: grid; grid-template-columns: 1fr; }
+      .brand-copy h1 { font-size: 1.2rem; }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <div class="brand">
-        <div class="avatar" aria-hidden="true"></div>
-        <strong>Furkan Sarıbal</strong>
+  <main class="page-shell">
+    <header class="pixel-panel pixel-nav">
+      <div class="brand-row">
+        <div class="avatar-box" aria-hidden="true">FS</div>
+        <div class="brand-copy">
+          <h1>Furkan Sarıbal</h1>
+          <p>Oyun geliştirici / yazılım mühendisliği öğrencisi</p>
+        </div>
       </div>
-      <nav>
-        <a href="#projeler" class="active">Projeler</a>
-        <a href="#hakkimda">Hakkımda</a>
-        <a href="#iletisim">İletişim</a>
+
+      <nav class="nav-links" aria-label="Ana menü">
+        <a class="nav-chip" href="#projeler">Projeler</a>
+        <a class="nav-chip" href="#profil">Jam Yolculuğu</a>
+        <a class="nav-chip" href="#questlog">Teknik Odaklar</a>
+        <a class="nav-chip" href="#iletisim">İletişim</a>
       </nav>
     </header>
 
-    <section class="hero">
-      <div>
-        <div class="kicker">Merhaba! 👋</div>
-        <h1>Ürün odaklı, sade ve hızlı web deneyimleri geliştiriyorum.</h1>
-        <p>Front‑end ağırlıklı çalışıyorum; React, TypeScript ve modern CSS ile ölçeklenebilir arayüzler kuruyorum. Aşağıda öne çıkan işlerden bir seçki var.</p>
-        <div class="cta">
-          <a class="btn" href="#projeler">Projeleri gör</a>
-          <a class="btn secondary" href="#iletisim">İletişime geç</a>
-        </div>
-      </div>
-      <div class="card">
-        <div class="kicker">Hızlı Özgeçmiş</div>
-        <ul class="list" aria-label="Öne çıkan noktalar">
-          <li>• <strong>3+ yıl</strong> web geliştirme deneyimi</li>
-          <li>• Odak: <strong>React, Next.js, Node</strong></li>
-          <li>• İlgi: performans, UX, erişilebilirlik</li>
-          <li>• Şehir: İstanbul</li>
-        </ul>
-        <div class="tagbar" aria-label="Teknolojiler">
-          <span class="tag">React</span>
-          <span class="tag">TypeScript</span>
-          <span class="tag">Next.js</span>
-          <span class="tag">Node.js</span>
-          <span class="tag">Tailwind</span>
-        </div>
-      </div>
-    </section>
-
-    <section id="projeler" class="grid" aria-labelledby="projeler-baslik">
-      <h2 id="projeler-baslik" class="visually-hidden">Projeler</h2>
-
-      <article class="card col-6 project">
-        <div style="width:14px; height:14px; margin-top:6px; border-radius:3px; background:linear-gradient(135deg,#38bdf8,#06b6d4)"></div>
-        <div>
-          <h3 style="margin:0 0 4px">Proje A — Dashboard</h3>
-          <p style="margin:0 0 6px; color:var(--muted)">Gerçek zamanlı verilerle etkileşimli yönetim paneli. SSR ve API optimizasyonları ile <em>95+ Lighthouse</em>.</p>
-          <span class="badge">React • Next.js • Prisma</span>
-        </div>
-      </article>
-
-      <article class="card col-6 project">
-        <div style="width:14px; height:14px; margin-top:6px; border-radius:3px; background:linear-gradient(135deg,#6366f1,#22d3ee)"></div>
-        <div>
-          <h3 style="margin:0 0 4px">Proje B — E‑ticaret</h3>
-          <p style="margin:0 0 6px; color:var(--muted)">Ödeme entegrasyonları ve ürün arama için hızlı önbellekleme stratejileri.</p>
-          <span class="badge">Next.js • Stripe • Redis</span>
-        </div>
-      </article>
-
-      <article class="card col-6 project">
-        <div style="width:14px; height:14px; margin-top:6px; border-radius:3px; background:linear-gradient(135deg,#10b981,#84cc16)"></div>
-        <div>
-          <h3 style="margin:0 0 4px">Proje C — Mobil Web App</h3>
-          <p style="margin:0 0 6px; color:var(--muted)">PWA desteği, offline-first veri katmanı, performans odaklı mimari.</p>
-          <span class="badge">PWA • React • Workbox</span>
-        </div>
-      </article>
-
-      <article class="card col-6 project">
-        <div style="width:14px; height:14px; margin-top:6px; border-radius:3px; background:linear-gradient(135deg,#f59e0b,#ef4444)"></div>
-        <div>
-          <h3 style="margin:0 0 4px">Açık Kaynak — UI Kütüphanesi</h3>
-          <p style="margin:0 0 6px; color:var(--muted)">Küçük ama işlevsel bileşen seti: buton, kart, modal, toast…</p>
-          <span class="badge">TypeScript • Vite • Vitest</span>
-        </div>
-      </article>
-    </section>
-
-    <section id="hakkimda" class="grid" style="margin-top:32px">
-      <div class="col-12 card">
-        <div class="kicker">Hakkımda</div>
-        <p style="margin:8px 0 0; color:var(--muted)">
-          Merhaba! Ben Furkan Sarıbal. Ürün vizyonunu piksellere dönüştürmeyi seven bir front‑end geliştiricisiyim. Performans ve kullanıcı deneyimi benim için öncelik. Ekip çalışmasına açık, temiz kod ve açık iletişim yanlısıyım.
+    <section class="hero-grid">
+      <article class="pixel-panel hero-card">
+        <h2 class="hero-title">Oyun Geliştirme Portföyü</h2>
+        <p>
+          Erciyes Üniversitesi'nde yazılım mühendisliği okuyorum. Oyun geliştirme tarafında
+          özellikle Unity ile prototip üretme, oynanış akışını test etme ve level design üzerine çalışıyorum.
+          Bu sayfada projelerimi ve jam deneyimlerimi toplu şekilde gösteriyorum.
         </p>
-      </div>
+        <div class="hero-actions">
+          <a class="hud-button primary" href="#projeler">
+            <i class="bi bi-controller"></i>
+            Oyunları incele
+          </a>
+          <a class="hud-button secondary" href="https://starters-pack.itch.io/" target="_blank" rel="noreferrer">
+            <i class="bi bi-box-arrow-up-right"></i>
+            itch.io sayfası
+          </a>
+        </div>
+      </article>
+
+      <aside class="pixel-panel hud-card" aria-label="Oyuncu durumu">
+        <div class="hud-header">
+          <h2 class="hud-title">Durum</h2>
+          <span class="status-pill">Aktif</span>
+        </div>
+
+        <div>
+          <div class="mini-label">Can Durumu</div>
+          <div class="hearts-row" aria-label="Can göstergesi">
+            <i class="bi bi-heart-fill"></i>
+            <i class="bi bi-heart-fill"></i>
+            <i class="bi bi-heart-fill"></i>
+            <i class="bi bi-heart-fill"></i>
+            <i class="bi bi-heart-half"></i>
+            <span>4.5 / 5 enerji</span>
+          </div>
+        </div>
+
+        <div class="stat-box">
+          <div class="stat-top">
+            <span>HP / Unity Çalışması</span>
+            <span>%88</span>
+          </div>
+          <div class="progress pixel-progress" role="progressbar" aria-label="Unity Çalışması" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100">
+            <div class="progress-bar bar-hp" style="width: 88%"></div>
+          </div>
+        </div>
+
+        <div class="stat-box">
+          <div class="stat-top">
+            <span>XP / Oynanış Geliştirme</span>
+            <span>%81</span>
+          </div>
+          <div class="progress pixel-progress" role="progressbar" aria-label="Oynanış Geliştirme" aria-valuenow="81" aria-valuemin="0" aria-valuemax="100">
+            <div class="progress-bar bar-xp" style="width: 81%"></div>
+          </div>
+        </div>
+
+        <div class="stat-box">
+          <div class="stat-top">
+            <span>Yetenek / Seviye Tasarımı</span>
+            <span>%76</span>
+          </div>
+          <div class="progress pixel-progress" role="progressbar" aria-label="Seviye Tasarımı" aria-valuenow="76" aria-valuemin="0" aria-valuemax="100">
+            <div class="progress-bar bar-skill" style="width: 76%"></div>
+          </div>
+        </div>
+
+        <div>
+          <div class="mini-label">Hızlı Erişim</div>
+          <div class="quick-badges">
+            <span>Unity</span>
+            <span>C#</span>
+            <span>Unreal</span>
+            <span>Java</span>
+          </div>
+        </div>
+      </aside>
     </section>
 
-    <section id="iletisim" class="grid" style="margin:32px 0">
-      <div class="col-12 card">
-        <div class="kicker">İletişim</div>
-        <p style="margin:8px 0 12px; color:var(--muted)">Projeler hakkında konuşmak istersen e‑posta gönderebilirsin.</p>
-        <ul class="contact">
-          <li><strong>E‑posta:</strong> <a href="mailto:furkansaribalbus@gmail.com">furkansaribalbus@gmail.com</a></li>
-          <li><strong>GitHub:</strong> <a href="https://github.com/FurkanSaribal">@FurkanSaribal</a></li>
-          <li><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/furkansaribal">linkedin.com/in/furkansaribal</a></li>
-        </ul>
-      </div>
-    </section>
+    <div class="layout-grid">
+      <section id="projeler" class="pixel-panel section-panel" aria-labelledby="missions-title">
+        <div class="section-head">
+          <div>
+            <h2 id="missions-title">Projeler</h2>
+          </div>
+        </div>
 
-    <footer>
-      © <span id="yil"></span> Furkan Sarıbal. Tüm hakları saklıdır.
+        <div class="project-grid">
+          <article class="project-card">
+            <div class="project-top">
+              <h3>
+                <a class="project-title-link" href="https://starters-pack.itch.io/sudokublockblast" target="_blank" rel="noreferrer">
+                  Sudoku Block Blast
+                  <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
+                </a>
+              </h3>
+              <span class="platform-chip">Android</span>
+            </div>
+            <p>
+              Sudoku mantığını blok yerleştirme yapısıyla birleştiren mobil bulmaca denemesi.
+              Temel odak, tahtayı açık tutup alan temizleme ve skor üretme hissini kurmaktı.
+            </p>
+            <div class="project-info-grid" aria-label="Sudoku Block Blast detayları">
+              <div class="project-info-card">
+                <div class="project-info-value">Gameplay programmer</div>
+              </div>
+              <div class="project-info-card">
+                <div class="project-info-value">Bulmaca sistemi</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-top">
+              <h3>
+                <a class="project-title-link" href="https://starters-pack.itch.io/galacticstriker" target="_blank" rel="noreferrer">
+                  Galactic Striker
+                  <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
+                </a>
+              </h3>
+              <span class="platform-chip">Android</span>
+            </div>
+            <p>
+              Tek elle oynanmaya uygun, hızlı tempolu bir aksiyon prototipi.
+              Düşman baskısı, yetenek açma ve hayatta kalma ritmi üzerine kuruluydu.
+            </p>
+            <div class="project-info-grid" aria-label="Galactic Striker detayları">
+              <div class="project-info-card">
+                <div class="project-info-value">Character controller</div>
+              </div>
+              <div class="project-info-card">
+                <div class="project-info-value">Oynanış programlama</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-top">
+              <h3>
+                <a class="project-title-link" href="https://starters-pack.itch.io/soul-knott" target="_blank" rel="noreferrer">
+                  Soul Knott
+                  <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
+                </a>
+              </h3>
+              <span class="platform-chip">Windows</span>
+            </div>
+            <p>
+              Boğaziçi Game Jam '24 kapsamında ekip halinde geliştirilen bir macera projesi.
+              Kısa sürede oynanabilir çıktı hazırlamak ve ekip koordinasyonu açısından önemliydi.
+            </p>
+            <div class="project-info-grid" aria-label="Soul Knott detayları">
+              <div class="project-info-card">
+                <div class="project-info-value">Character controller</div>
+              </div>
+              <div class="project-info-card">
+                <div class="project-info-value">Animasyon</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-top">
+              <h3>
+                <a class="project-title-link" href="https://starters-pack.itch.io/illusion-maze" target="_blank" rel="noreferrer">
+                  Illusion Maze
+                  <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
+                </a>
+              </h3>
+              <span class="platform-chip">Windows</span>
+            </div>
+            <p>
+              Kayseri TeknoJam kapsamında ekipçe geliştirilen bir projeydi.
+              Bu işte karakter kontrolü, animasyon ve 2D level design tarafında çalıştım.
+            </p>
+            <div class="project-info-grid" aria-label="Illusion Maze detayları">
+              <div class="project-info-card">
+                <div class="project-info-value">Character controller</div>
+              </div>
+              <div class="project-info-card">
+                <div class="project-info-value">Animasyon</div>
+              </div>
+              <div class="project-info-card">
+                <div class="project-info-value">2D level design</div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="profil" class="pixel-panel section-panel" aria-labelledby="profile-title">
+        <div class="section-head">
+          <div>
+            <h2 id="profile-title">Kısa Jam Kronolojisi</h2>
+          </div>
+        </div>
+
+        <div class="timeline">
+          <article class="timeline-card">
+            <span class="timeline-title">Kayseri TeknoJam / Illusion Maze</span>
+            <p>
+              Ekiple geliştirdiğimiz bu projede karakter kontrolü ve 2D level design tarafında yer aldım.
+            </p>
+          </article>
+
+          <article class="timeline-card">
+            <span class="timeline-title">Boğaziçi Game Jam '24 / Soul Knott</span>
+            <p>
+              Görev paylaşımı, kısa sürede karar alma ve oynanabilir bir çıktı hazırlama tarafında deneyim kazandım.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="questlog" class="pixel-panel section-panel" aria-labelledby="quest-title">
+        <div class="section-head">
+          <div>
+            <h2 id="quest-title">Üzerinde Çalıştığım Kısımlar</h2>
+          </div>
+        </div>
+
+        <div class="timeline">
+          <article class="timeline-card">
+            <span class="timeline-title">Karakter kontrolü</span>
+            <p>
+              Hareket, input tepkisi, kamera takibi ve oyuncunun karakterle kurduğu temel hissin ayarlanması.
+            </p>
+          </article>
+
+          <article class="timeline-card">
+            <span class="timeline-title">Oynanış programlama</span>
+            <p>
+              Skor, yetenek, düşman davranışı, etkileşim ve oyun döngüsü gibi temel mekaniklerin kurulması.
+            </p>
+          </article>
+
+          <article class="timeline-card">
+            <span class="timeline-title">Level design desteği</span>
+            <p>
+              Bölüm akışı, oyuncu yönlendirmesi ve sahnenin oynanabilirliğini destekleyen düzenlemeler.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="iletisim" class="pixel-panel section-panel" aria-labelledby="coop-title">
+        <div class="section-head">
+          <div>
+            <h2 id="coop-title">İletişim Bilgileri</h2>
+          </div>
+        </div>
+
+        <div class="contact-grid">
+          <article class="contact-card">
+            <strong>E-posta</strong>
+            <p><a href="mailto:furkansaribalbus@gmail.com">furkansaribalbus@gmail.com</a></p>
+          </article>
+
+          <article class="contact-card">
+            <strong>GitHub</strong>
+            <p>
+              <a href="https://github.com/FurkanSaribal" target="_blank" rel="noreferrer">
+                github.com/FurkanSaribal
+              </a>
+            </p>
+          </article>
+
+          <article class="contact-card">
+            <strong>LinkedIn</strong>
+            <p>
+              <a href="https://linkedin.com/in/furkansaribal" target="_blank" rel="noreferrer">
+                linkedin.com/in/furkansaribal
+              </a>
+            </p>
+          </article>
+
+          <article class="contact-card">
+            <strong>itch.io</strong>
+            <p>
+              <a href="https://starters-pack.itch.io/" target="_blank" rel="noreferrer">
+                starters-pack.itch.io
+              </a>
+            </p>
+          </article>
+        </div>
+      </section>
+    </div>
+
+    <footer class="pixel-panel footer-bar">
+      © <span id="yil"></span> Furkan Sarıbal / Continue? Yes
     </footer>
-  </div>
+  </main>
 
   <script>
-    document.getElementById('yil').textContent = new Date().getFullYear();
+    document.getElementById("yil").textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
