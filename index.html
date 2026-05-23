@@ -99,6 +99,34 @@
       z-index: 1;
     }
 
+    .pixel-scene-canvas {
+      width: 100%;
+      height: auto;
+      display: block;
+      image-rendering: pixelated;
+    }
+
+    .section-shell {
+      position: relative;
+    }
+
+    .section-side-art {
+      position: absolute;
+      top: 26px;
+      width: 136px;
+      pointer-events: none;
+      opacity: 0.9;
+      filter: drop-shadow(0 0 24px rgba(13, 11, 22, 0.5));
+    }
+
+    .section-panel.decor-left .section-side-art {
+      left: -160px;
+    }
+
+    .section-panel.decor-right .section-side-art {
+      right: -160px;
+    }
+
     .pixel-panel {
       background:
         linear-gradient(180deg, rgba(255, 255, 255, 0.05), transparent 32%),
@@ -293,17 +321,39 @@
       align-items: center;
       gap: 10px;
       flex-wrap: wrap;
-      color: var(--red);
+      color: var(--gold);
       font-size: 1.4rem;
     }
 
-    .hearts-row span, .stat-top, .timeline-title, .contact-card strong, .info-card strong, .project-info-value {
+    .hearts-row .energy-text, .stat-top, .timeline-title, .contact-card strong, .info-card strong, .project-info-value {
       font-family: var(--pixel-font);
       text-transform: uppercase;
       letter-spacing: 0.04em;
     }
 
-    .hearts-row span { color: var(--text); font-size: 0.88rem; margin-left: 6px; }
+    .hearts-row .energy-text { color: var(--text); font-size: 0.88rem; margin-left: 6px; }
+    .half-energy {
+      position: relative;
+      display: inline-grid;
+      place-items: center;
+      width: 1em;
+      height: 1em;
+    }
+
+    .half-energy .bi {
+      grid-area: 1 / 1;
+      line-height: 1;
+    }
+
+    .half-energy .bi:first-child {
+      color: rgba(255, 208, 90, 0.32);
+    }
+
+    .half-energy .bi:last-child {
+      color: var(--gold);
+      clip-path: inset(50% 0 0 0);
+    }
+
     .stat-box { display: grid; gap: 8px; }
     .stat-top { font-size: 0.82rem; color: var(--muted); }
     .progress.pixel-progress {
@@ -326,9 +376,10 @@
     }
 
     .bar-hp { background-color: var(--red); }
+
     .bar-xp { background-color: var(--blue); }
+
     .bar-skill { background-color: var(--green); }
-    .bar-gold { background-color: var(--gold); }
 
     .layout-grid, .timeline, .info-list, .contact-grid {
       display: grid;
@@ -339,6 +390,67 @@
     .section-head { margin-bottom: 24px; align-items: end; }
     .section-head h2 { font-size: clamp(1.9rem, 5vw, 3.2rem); }
     .section-head p { max-width: 56ch; }
+
+    .section-title-row {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .section-pixel-icon {
+      width: 32px;
+      height: 32px;
+      display: inline-grid;
+      place-items: center;
+      color: var(--gold);
+      background: #171127;
+      border: 3px solid #0d0b16;
+      box-shadow: inset 0 0 0 3px rgba(255, 208, 90, 0.08);
+      font-size: 0.95rem;
+    }
+
+    .pixel-divider {
+      position: relative;
+      height: 38px;
+      margin: -6px 0 2px;
+      overflow: hidden;
+    }
+
+    .pixel-divider::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 16px;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.06), transparent 45%),
+        repeating-linear-gradient(
+          90deg,
+          #4d3b74 0,
+          #4d3b74 38px,
+          #2a203f 38px,
+          #2a203f 42px
+        );
+      border-top: 3px solid #171127;
+      border-bottom: 3px solid #0d0b16;
+      box-shadow: inset 0 3px 0 rgba(255, 208, 90, 0.1);
+    }
+
+    .pixel-divider::after {
+      content: "";
+      position: absolute;
+      right: 52px;
+      bottom: 16px;
+      width: 12px;
+      height: 12px;
+      background: var(--gold);
+      box-shadow:
+        -28px -6px 0 0 rgba(88, 216, 255, 0.9),
+        -64px 4px 0 0 rgba(149, 255, 123, 0.9),
+        -112px -8px 0 0 rgba(255, 208, 90, 0.85);
+    }
 
     .project-grid {
       display: grid;
@@ -479,9 +591,23 @@
       letter-spacing: 0.05em;
     }
 
+    @media (max-width: 1400px) {
+      .section-side-art {
+        width: 136px;
+        opacity: 0.72;
+      }
+    }
+
     @media (max-width: 980px) {
+      .section-side-art { display: none; }
       .hero-grid, .project-grid, .contact-grid, .project-info-grid { grid-template-columns: 1fr; }
       .pixel-nav { flex-direction: column; align-items: start; }
+      .nav-links {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        width: 100%;
+      }
+      .nav-chip { width: 100%; }
       .section-head { align-items: start; flex-direction: column; }
     }
 
@@ -491,6 +617,27 @@
       .nav-chip, .hud-button { width: 100%; }
       .hero-actions, .nav-links { display: grid; grid-template-columns: 1fr; }
       .brand-copy h1 { font-size: 1.2rem; }
+      .pixel-divider { height: 28px; }
+      .section-title-row { gap: 10px; }
+      .section-pixel-icon {
+        width: 28px;
+        height: 28px;
+      }
+      .project-top {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        align-items: start;
+      }
+      .project-card h3 {
+        min-width: 0;
+        margin-right: 0;
+      }
+      .project-title-link {
+        flex-wrap: wrap;
+      }
+      .platform-chip {
+        justify-self: end;
+      }
     }
   </style>
 </head>
@@ -513,7 +660,7 @@
       </nav>
     </header>
 
-    <section class="hero-grid">
+    <section id="giris" class="hero-grid">
       <article class="pixel-panel hero-card">
         <h2 class="hero-title">Oyun Geliştirme Portföyü</h2>
         <p>
@@ -526,7 +673,7 @@
             <i class="bi bi-controller"></i>
             Oyunları incele
           </a>
-          <a class="hud-button secondary" href="https://starters-pack.itch.io/" target="_blank" rel="noreferrer">
+          <a class="hud-button secondary" href="https://starters-pack.itch.io/" target="_blank" rel="noreferrer" lang="en">
             <i class="bi bi-box-arrow-up-right"></i>
             itch.io sayfası
           </a>
@@ -535,268 +682,301 @@
 
       <aside class="pixel-panel hud-card" aria-label="Oyuncu durumu">
         <div class="hud-header">
-          <h2 class="hud-title">Durum</h2>
-          <span class="status-pill">Aktif</span>
+          <h2 class="hud-title">Oyuncu Bilgisi</h2>
+          <span class="status-pill" lang="en">Online</span>
         </div>
 
         <div>
-          <div class="mini-label">Can Durumu</div>
+          <div class="mini-label">Enerji</div>
           <div class="hearts-row" aria-label="Can göstergesi">
-            <i class="bi bi-heart-fill"></i>
-            <i class="bi bi-heart-fill"></i>
-            <i class="bi bi-heart-fill"></i>
-            <i class="bi bi-heart-fill"></i>
-            <i class="bi bi-heart-half"></i>
-            <span>4.5 / 5 enerji</span>
+            <i class="bi bi-lightning-charge-fill"></i>
+            <i class="bi bi-lightning-charge-fill"></i>
+            <i class="bi bi-lightning-charge-fill"></i>
+            <i class="bi bi-lightning-charge-fill"></i>
+            <span class="half-energy" aria-hidden="true">
+              <i class="bi bi-lightning-charge"></i>
+              <i class="bi bi-lightning-charge-fill"></i>
+            </span>
+            <span class="energy-text">4.5 / 5 enerji</span>
           </div>
         </div>
 
         <div class="stat-box">
           <div class="stat-top">
-            <span>HP / Unity Çalışması</span>
-            <span>%88</span>
+            <span>Can</span>
+            <span>%86</span>
           </div>
-          <div class="progress pixel-progress" role="progressbar" aria-label="Unity Çalışması" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100">
-            <div class="progress-bar bar-hp" style="width: 88%"></div>
-          </div>
-        </div>
-
-        <div class="stat-box">
-          <div class="stat-top">
-            <span>XP / Oynanış Geliştirme</span>
-            <span>%81</span>
-          </div>
-          <div class="progress pixel-progress" role="progressbar" aria-label="Oynanış Geliştirme" aria-valuenow="81" aria-valuemin="0" aria-valuemax="100">
-            <div class="progress-bar bar-xp" style="width: 81%"></div>
+          <div class="progress pixel-progress" role="progressbar" aria-label="Can" aria-valuenow="86" aria-valuemin="0" aria-valuemax="100">
+            <div class="progress-bar bar-hp" style="width: 86%"></div>
           </div>
         </div>
 
         <div class="stat-box">
           <div class="stat-top">
-            <span>Yetenek / Seviye Tasarımı</span>
-            <span>%76</span>
+            <span>Mana</span>
+            <span>%89</span>
           </div>
-          <div class="progress pixel-progress" role="progressbar" aria-label="Seviye Tasarımı" aria-valuenow="76" aria-valuemin="0" aria-valuemax="100">
-            <div class="progress-bar bar-skill" style="width: 76%"></div>
+          <div class="progress pixel-progress" role="progressbar" aria-label="Mana" aria-valuenow="89" aria-valuemin="0" aria-valuemax="100">
+            <div class="progress-bar bar-xp" style="width: 89%"></div>
+          </div>
+        </div>
+
+        <div class="stat-box">
+          <div class="stat-top">
+            <span>XP</span>
+            <span>%74</span>
+          </div>
+          <div class="progress pixel-progress" role="progressbar" aria-label="XP" aria-valuenow="74" aria-valuemin="0" aria-valuemax="100">
+            <div class="progress-bar bar-skill" style="width: 74%"></div>
           </div>
         </div>
 
         <div>
-          <div class="mini-label">Hızlı Erişim</div>
+          <div class="mini-label">Araçlar</div>
           <div class="quick-badges">
-            <span>Unity</span>
-            <span>C#</span>
-            <span>Unreal</span>
-            <span>Java</span>
+            <span lang="en">Unity</span>
+            <span lang="en">C#</span>
+            <span lang="en">Java</span>
+            <span lang="en">Python</span>
           </div>
         </div>
       </aside>
     </section>
 
     <div class="layout-grid">
-      <section id="projeler" class="pixel-panel section-panel" aria-labelledby="missions-title">
+      <section id="projeler" class="pixel-panel section-panel decor-right" aria-labelledby="missions-title">
         <div class="section-head">
           <div>
-            <h2 id="missions-title">Projeler</h2>
+            <div class="section-title-row">
+              <span class="section-pixel-icon" aria-hidden="true"><i class="bi bi-controller"></i></span>
+              <h2 id="missions-title">Projeler</h2>
+            </div>
           </div>
         </div>
 
-        <div class="project-grid">
-          <article class="project-card">
-            <div class="project-top">
-              <h3>
-                <a class="project-title-link" href="https://starters-pack.itch.io/sudokublockblast" target="_blank" rel="noreferrer">
-                  Sudoku Block Blast
-                  <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
-                </a>
-              </h3>
-              <span class="platform-chip">Android</span>
-            </div>
-            <p>
-              Sudoku mantığını blok yerleştirme yapısıyla birleştiren mobil bulmaca denemesi.
-              Temel odak, tahtayı açık tutup alan temizleme ve skor üretme hissini kurmaktı.
-            </p>
-            <div class="project-info-grid" aria-label="Sudoku Block Blast detayları">
-              <div class="project-info-card">
-                <div class="project-info-value">Gameplay programmer</div>
-              </div>
-              <div class="project-info-card">
-                <div class="project-info-value">Bulmaca sistemi</div>
-              </div>
-            </div>
-          </article>
+        <div class="section-shell">
+          <div class="project-grid">
+              <article class="project-card">
+                <div class="project-top">
+                  <h3>
+                    <a class="project-title-link" href="https://starters-pack.itch.io/sudokublockblast" target="_blank" rel="noreferrer" lang="en">
+                      Sudoku Block Blast
+                      <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
+                    </a>
+                  </h3>
+                  <span class="platform-chip">Android</span>
+                </div>
+                <p>
+                  Sudoku mantığını blok yerleştirme yapısıyla birleştiren mobil bulmaca denemesi.
+                  Temel odak, tahtayı açık tutup alan temizleme ve skor üretme hissini kurmaktı.
+                </p>
+                <div class="project-info-grid" aria-label="Sudoku Block Blast detayları">
+                  <div class="project-info-card">
+                    <div class="project-info-value" lang="en">Gameplay programmer</div>
+                  </div>
+                  <div class="project-info-card">
+                    <div class="project-info-value">Bulmaca sistemi</div>
+                  </div>
+                </div>
+              </article>
 
-          <article class="project-card">
-            <div class="project-top">
-              <h3>
-                <a class="project-title-link" href="https://starters-pack.itch.io/galacticstriker" target="_blank" rel="noreferrer">
-                  Galactic Striker
-                  <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
-                </a>
-              </h3>
-              <span class="platform-chip">Android</span>
-            </div>
-            <p>
-              Tek elle oynanmaya uygun, hızlı tempolu bir aksiyon prototipi.
-              Düşman baskısı, yetenek açma ve hayatta kalma ritmi üzerine kuruluydu.
-            </p>
-            <div class="project-info-grid" aria-label="Galactic Striker detayları">
-              <div class="project-info-card">
-                <div class="project-info-value">Character controller</div>
-              </div>
-              <div class="project-info-card">
-                <div class="project-info-value">Oynanış programlama</div>
-              </div>
-            </div>
-          </article>
+              <article class="project-card">
+                <div class="project-top">
+                  <h3>
+                    <a class="project-title-link" href="https://starters-pack.itch.io/galacticstriker" target="_blank" rel="noreferrer" lang="en">
+                      Galactic Striker
+                      <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
+                    </a>
+                  </h3>
+                  <span class="platform-chip">Android</span>
+                </div>
+                <p>
+                  Tek elle oynanmaya uygun, hızlı tempolu bir aksiyon prototipi.
+                  Düşman baskısı, yetenek açma ve hayatta kalma ritmi üzerine kuruluydu.
+                </p>
+                <div class="project-info-grid" aria-label="Galactic Striker detayları">
+                  <div class="project-info-card">
+                    <div class="project-info-value" lang="en">Character controller</div>
+                  </div>
+                  <div class="project-info-card">
+                    <div class="project-info-value">Oynanış programlama</div>
+                  </div>
+                </div>
+              </article>
 
-          <article class="project-card">
-            <div class="project-top">
-              <h3>
-                <a class="project-title-link" href="https://starters-pack.itch.io/soul-knott" target="_blank" rel="noreferrer">
-                  Soul Knott
-                  <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
-                </a>
-              </h3>
-              <span class="platform-chip">Windows</span>
-            </div>
-            <p>
-              Boğaziçi Game Jam '24 kapsamında ekip halinde geliştirilen bir macera projesi.
-              Kısa sürede oynanabilir çıktı hazırlamak ve ekip koordinasyonu açısından önemliydi.
-            </p>
-            <div class="project-info-grid" aria-label="Soul Knott detayları">
-              <div class="project-info-card">
-                <div class="project-info-value">Character controller</div>
-              </div>
-              <div class="project-info-card">
-                <div class="project-info-value">Animasyon</div>
-              </div>
-            </div>
-          </article>
+              <article class="project-card">
+                <div class="project-top">
+                  <h3>
+                    <a class="project-title-link" href="https://starters-pack.itch.io/soul-knott" target="_blank" rel="noreferrer" lang="en">
+                      Soul Knott
+                      <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
+                    </a>
+                  </h3>
+                  <span class="platform-chip">Windows</span>
+                </div>
+                <p>
+                  Boğaziçi Game Jam '24 kapsamında ekip halinde geliştirilen bir macera projesi.
+                  Kısa sürede oynanabilir çıktı hazırlamak ve ekip koordinasyonu açısından önemliydi.
+                </p>
+                <div class="project-info-grid" aria-label="Soul Knott detayları">
+                  <div class="project-info-card">
+                    <div class="project-info-value" lang="en">Character controller</div>
+                  </div>
+                  <div class="project-info-card">
+                    <div class="project-info-value">Animasyon</div>
+                  </div>
+                </div>
+              </article>
 
-          <article class="project-card">
-            <div class="project-top">
-              <h3>
-                <a class="project-title-link" href="https://starters-pack.itch.io/illusion-maze" target="_blank" rel="noreferrer">
-                  Illusion Maze
-                  <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
-                </a>
-              </h3>
-              <span class="platform-chip">Windows</span>
-            </div>
-            <p>
-              Kayseri TeknoJam kapsamında ekipçe geliştirilen bir projeydi.
-              Bu işte karakter kontrolü, animasyon ve 2D level design tarafında çalıştım.
-            </p>
-            <div class="project-info-grid" aria-label="Illusion Maze detayları">
-              <div class="project-info-card">
-                <div class="project-info-value">Character controller</div>
-              </div>
-              <div class="project-info-card">
-                <div class="project-info-value">Animasyon</div>
-              </div>
-              <div class="project-info-card">
-                <div class="project-info-value">2D level design</div>
-              </div>
-            </div>
-          </article>
+              <article class="project-card">
+                <div class="project-top">
+                  <h3>
+                    <a class="project-title-link" href="https://starters-pack.itch.io/illusion-maze" target="_blank" rel="noreferrer" lang="en">
+                      Illusion Maze
+                      <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
+                    </a>
+                  </h3>
+                  <span class="platform-chip">Windows</span>
+                </div>
+                <p>
+                  Kayseri TeknoJam kapsamında ekipçe geliştirilen bir projeydi.
+                  Bu işte karakter kontrolü, animasyon ve 2D level design tarafında çalıştım.
+                </p>
+                <div class="project-info-grid" aria-label="Illusion Maze detayları">
+                  <div class="project-info-card">
+                    <div class="project-info-value" lang="en">Character controller</div>
+                  </div>
+                  <div class="project-info-card">
+                    <div class="project-info-value">Animasyon</div>
+                  </div>
+                  <div class="project-info-card">
+                    <div class="project-info-value" lang="en">2D level design</div>
+                  </div>
+                </div>
+              </article>
+          </div>
+          <canvas class="pixel-scene-canvas section-side-art" data-scene="projects-right" width="136" height="540" aria-hidden="true"></canvas>
         </div>
       </section>
 
-      <section id="profil" class="pixel-panel section-panel" aria-labelledby="profile-title">
+      <div class="pixel-divider" aria-hidden="true"></div>
+
+      <section id="profil" class="pixel-panel section-panel decor-left" aria-labelledby="profile-title">
         <div class="section-head">
           <div>
-            <h2 id="profile-title">Kısa Jam Kronolojisi</h2>
+            <div class="section-title-row">
+              <span class="section-pixel-icon" aria-hidden="true"><i class="bi bi-flag"></i></span>
+              <h2 id="profile-title">Kısa Jam Kronolojisi</h2>
+            </div>
           </div>
         </div>
 
-        <div class="timeline">
-          <article class="timeline-card">
-            <span class="timeline-title">Kayseri TeknoJam / Illusion Maze</span>
-            <p>
-              Ekiple geliştirdiğimiz bu projede karakter kontrolü ve 2D level design tarafında yer aldım.
-            </p>
-          </article>
+        <div class="section-shell">
+          <div class="timeline">
+              <article class="timeline-card">
+                <span class="timeline-title">Kayseri TeknoJam / Illusion Maze</span>
+                <p>
+                  Ekiple geliştirdiğimiz bu projede karakter kontrolü ve 2D level design tarafında yer aldım.
+                </p>
+              </article>
 
-          <article class="timeline-card">
-            <span class="timeline-title">Boğaziçi Game Jam '24 / Soul Knott</span>
-            <p>
-              Görev paylaşımı, kısa sürede karar alma ve oynanabilir bir çıktı hazırlama tarafında deneyim kazandım.
-            </p>
-          </article>
+              <article class="timeline-card">
+                <span class="timeline-title">Boğaziçi Game Jam '24 / Soul Knott</span>
+                <p>
+                  Görev paylaşımı, kısa sürede karar alma ve oynanabilir bir çıktı hazırlama tarafında deneyim kazandım.
+                </p>
+              </article>
+          </div>
+          <canvas class="pixel-scene-canvas section-side-art" data-scene="jam-left" width="136" height="460" aria-hidden="true"></canvas>
         </div>
       </section>
 
-      <section id="questlog" class="pixel-panel section-panel" aria-labelledby="quest-title">
+      <div class="pixel-divider" aria-hidden="true"></div>
+
+      <section id="questlog" class="pixel-panel section-panel decor-right" aria-labelledby="quest-title">
         <div class="section-head">
           <div>
-            <h2 id="quest-title">Üzerinde Çalıştığım Kısımlar</h2>
+            <div class="section-title-row">
+              <span class="section-pixel-icon" aria-hidden="true"><i class="bi bi-joystick"></i></span>
+              <h2 id="quest-title">Üzerinde Çalıştığım Kısımlar</h2>
+            </div>
           </div>
         </div>
 
-        <div class="timeline">
-          <article class="timeline-card">
-            <span class="timeline-title">Karakter kontrolü</span>
-            <p>
-              Hareket, input tepkisi, kamera takibi ve oyuncunun karakterle kurduğu temel hissin ayarlanması.
-            </p>
-          </article>
+        <div class="section-shell">
+          <div class="timeline">
+              <article class="timeline-card">
+                <span class="timeline-title">Karakter kontrolü</span>
+                <p>
+                  Hareket, input tepkisi, kamera takibi ve oyuncunun karakterle kurduğu temel hissin ayarlanması.
+                </p>
+              </article>
 
-          <article class="timeline-card">
-            <span class="timeline-title">Oynanış programlama</span>
-            <p>
-              Skor, yetenek, düşman davranışı, etkileşim ve oyun döngüsü gibi temel mekaniklerin kurulması.
-            </p>
-          </article>
+              <article class="timeline-card">
+                <span class="timeline-title">Oynanış programlama</span>
+                <p>
+                  Skor, yetenek, düşman davranışı, etkileşim ve oyun döngüsü gibi temel mekaniklerin kurulması.
+                </p>
+              </article>
 
-          <article class="timeline-card">
-            <span class="timeline-title">Level design desteği</span>
-            <p>
-              Bölüm akışı, oyuncu yönlendirmesi ve sahnenin oynanabilirliğini destekleyen düzenlemeler.
-            </p>
-          </article>
+              <article class="timeline-card">
+                <span class="timeline-title">Level design desteği</span>
+                <p>
+                  Bölüm akışı, oyuncu yönlendirmesi ve sahnenin oynanabilirliğini destekleyen düzenlemeler.
+                </p>
+              </article>
+          </div>
+          <canvas class="pixel-scene-canvas section-side-art" data-scene="focus-right" width="136" height="500" aria-hidden="true"></canvas>
         </div>
       </section>
 
-      <section id="iletisim" class="pixel-panel section-panel" aria-labelledby="coop-title">
+      <div class="pixel-divider" aria-hidden="true"></div>
+
+      <section id="iletisim" class="pixel-panel section-panel decor-left" aria-labelledby="coop-title">
         <div class="section-head">
           <div>
-            <h2 id="coop-title">İletişim Bilgileri</h2>
+            <div class="section-title-row">
+              <span class="section-pixel-icon" aria-hidden="true"><i class="bi bi-send"></i></span>
+              <h2 id="coop-title">İletişim Bilgileri</h2>
+            </div>
           </div>
         </div>
 
-        <div class="contact-grid">
-          <article class="contact-card">
-            <strong>E-posta</strong>
-            <p><a href="mailto:furkansaribalbus@gmail.com">furkansaribalbus@gmail.com</a></p>
-          </article>
+        <div class="section-shell">
+          <div class="contact-grid">
+              <article class="contact-card">
+                <strong>E-posta</strong>
+                <p><a href="mailto:furkansaribalbus@gmail.com">furkansaribalbus@gmail.com</a></p>
+              </article>
 
-          <article class="contact-card">
-            <strong>GitHub</strong>
-            <p>
-              <a href="https://github.com/FurkanSaribal" target="_blank" rel="noreferrer">
-                github.com/FurkanSaribal
-              </a>
-            </p>
-          </article>
+              <article class="contact-card">
+                <strong lang="en">GitHub</strong>
+                <p>
+                  <a href="https://github.com/FurkanSaribal" target="_blank" rel="noreferrer">
+                    github.com/FurkanSaribal
+                  </a>
+                </p>
+              </article>
 
-          <article class="contact-card">
-            <strong>LinkedIn</strong>
-            <p>
-              <a href="https://linkedin.com/in/furkansaribal" target="_blank" rel="noreferrer">
-                linkedin.com/in/furkansaribal
-              </a>
-            </p>
-          </article>
+              <article class="contact-card">
+                <strong lang="en">LinkedIn</strong>
+                <p>
+                  <a href="https://linkedin.com/in/furkansaribal" target="_blank" rel="noreferrer">
+                    linkedin.com/in/furkansaribal
+                  </a>
+                </p>
+              </article>
 
-          <article class="contact-card">
-            <strong>itch.io</strong>
-            <p>
-              <a href="https://starters-pack.itch.io/" target="_blank" rel="noreferrer">
-                starters-pack.itch.io
-              </a>
-            </p>
-          </article>
+              <article class="contact-card">
+                <strong lang="en">itch.io</strong>
+                <p>
+                  <a href="https://starters-pack.itch.io/" target="_blank" rel="noreferrer">
+                    starters-pack.itch.io
+                  </a>
+                </p>
+              </article>
+          </div>
+          <canvas class="pixel-scene-canvas section-side-art" data-scene="contact-left" width="136" height="500" aria-hidden="true"></canvas>
         </div>
       </section>
     </div>
@@ -808,6 +988,221 @@
 
   <script>
     document.getElementById("yil").textContent = new Date().getFullYear();
+
+    const pixel = (ctx, x, y, w, h, color) => {
+      ctx.fillStyle = color;
+      ctx.fillRect(x, y, w, h);
+    };
+
+    const drawScene = (canvas) => {
+      const ctx = canvas.getContext("2d");
+      const { width, height } = canvas;
+      const scene = canvas.dataset.scene;
+
+      ctx.clearRect(0, 0, width, height);
+
+      switch (scene) {
+        case "intro-left":
+          pixel(ctx, 22, 84, 110, 10, "#4d3b74");
+          pixel(ctx, 34, 74, 22, 10, "#95ff7b");
+          pixel(ctx, 58, 66, 18, 8, "#95ff7b");
+          pixel(ctx, 82, 50, 12, 34, "#d8d0ef");
+          pixel(ctx, 94, 50, 32, 18, "#ff5aa5");
+          pixel(ctx, 102, 56, 14, 4, "#ffd05a");
+          pixel(ctx, 36, 182, 96, 10, "#4d3b74");
+          pixel(ctx, 50, 164, 20, 18, "#ffd05a");
+          pixel(ctx, 58, 156, 4, 4, "#fff3b7");
+          pixel(ctx, 92, 154, 22, 28, "#2d2448");
+          pixel(ctx, 98, 160, 10, 8, "#58d8ff");
+          pixel(ctx, 40, 302, 88, 10, "#4d3b74");
+          pixel(ctx, 78, 224, 8, 78, "#d8d0ef");
+          pixel(ctx, 86, 224, 34, 18, "#ffd05a");
+          pixel(ctx, 58, 292, 16, 10, "#58d8ff");
+          pixel(ctx, 66, 282, 8, 8, "#ff5aa5");
+          pixel(ctx, 22, 430, 112, 32, "#2d2448");
+          pixel(ctx, 30, 438, 96, 18, "#171127");
+          pixel(ctx, 40, 444, 34, 4, "#58d8ff");
+          pixel(ctx, 40, 450, 48, 4, "#95ff7b");
+          pixel(ctx, 40, 456, 18, 4, "#ffd05a");
+          pixel(ctx, 48, 470, 44, 8, "#8d83b0");
+          pixel(ctx, 30, 594, 108, 12, "#4d3b74");
+          pixel(ctx, 44, 574, 26, 20, "#c98954");
+          pixel(ctx, 40, 570, 34, 10, "#ffd05a");
+          pixel(ctx, 90, 578, 18, 16, "#58d8ff");
+          pixel(ctx, 112, 582, 12, 12, "#95ff7b");
+          break;
+        case "intro-right":
+          pixel(ctx, 30, 88, 110, 10, "#4d3b74");
+          pixel(ctx, 40, 68, 26, 20, "#c98954");
+          pixel(ctx, 36, 64, 34, 10, "#ffd05a");
+          pixel(ctx, 84, 72, 20, 16, "#58d8ff");
+          pixel(ctx, 108, 76, 12, 12, "#95ff7b");
+          pixel(ctx, 32, 190, 104, 12, "#4d3b74");
+          pixel(ctx, 56, 168, 54, 22, "#2d2448");
+          pixel(ctx, 64, 176, 12, 12, "#58d8ff");
+          pixel(ctx, 52, 180, 20, 8, "#58d8ff");
+          pixel(ctx, 96, 176, 10, 10, "#ff5aa5");
+          pixel(ctx, 112, 176, 10, 10, "#95ff7b");
+          pixel(ctx, 74, 156, 24, 8, "#ffd05a");
+          pixel(ctx, 24, 318, 112, 10, "#4d3b74");
+          pixel(ctx, 72, 244, 10, 74, "#d8d0ef");
+          pixel(ctx, 82, 236, 22, 14, "#58d8ff");
+          pixel(ctx, 58, 260, 28, 40, "#95ff7b");
+          pixel(ctx, 30, 450, 108, 12, "#4d3b74");
+          pixel(ctx, 44, 420, 74, 30, "#2d2448");
+          pixel(ctx, 52, 428, 58, 18, "#171127");
+          pixel(ctx, 58, 432, 20, 4, "#58d8ff");
+          pixel(ctx, 58, 438, 30, 4, "#95ff7b");
+          pixel(ctx, 58, 444, 14, 4, "#ffd05a");
+          pixel(ctx, 34, 596, 100, 12, "#4d3b74");
+          pixel(ctx, 54, 558, 18, 38, "#d8d0ef");
+          pixel(ctx, 72, 558, 44, 24, "#f3c86c");
+          pixel(ctx, 76, 562, 34, 4, "#8a5d3a");
+          break;
+        case "projects-left":
+          pixel(ctx, 18, 90, 118, 10, "#4d3b74");
+          pixel(ctx, 28, 78, 20, 12, "#95ff7b");
+          pixel(ctx, 52, 68, 18, 10, "#95ff7b");
+          pixel(ctx, 86, 40, 10, 50, "#d8d0ef");
+          pixel(ctx, 96, 42, 34, 18, "#ff5aa5");
+          pixel(ctx, 104, 48, 16, 4, "#ffd05a");
+          pixel(ctx, 24, 216, 112, 12, "#4d3b74");
+          pixel(ctx, 46, 192, 18, 18, "#ffd05a");
+          pixel(ctx, 52, 186, 6, 6, "#fff3b7");
+          pixel(ctx, 88, 184, 22, 26, "#2d2448");
+          pixel(ctx, 94, 190, 10, 8, "#58d8ff");
+          pixel(ctx, 18, 348, 118, 12, "#4d3b74");
+          pixel(ctx, 66, 312, 20, 20, "#58d8ff");
+          pixel(ctx, 94, 300, 14, 32, "#95ff7b");
+          pixel(ctx, 36, 486, 86, 34, "#2d2448");
+          pixel(ctx, 44, 494, 70, 18, "#171127");
+          pixel(ctx, 50, 500, 18, 4, "#58d8ff");
+          pixel(ctx, 50, 506, 34, 4, "#95ff7b");
+          pixel(ctx, 50, 512, 14, 4, "#ffd05a");
+          break;
+        case "projects-right":
+          pixel(ctx, 34, 96, 104, 12, "#4d3b74");
+          pixel(ctx, 48, 74, 24, 22, "#c98954");
+          pixel(ctx, 44, 70, 32, 12, "#ffd05a");
+          pixel(ctx, 92, 82, 18, 14, "#58d8ff");
+          pixel(ctx, 116, 84, 10, 12, "#95ff7b");
+          pixel(ctx, 28, 232, 110, 12, "#4d3b74");
+          pixel(ctx, 52, 206, 52, 20, "#2d2448");
+          pixel(ctx, 60, 212, 12, 10, "#58d8ff");
+          pixel(ctx, 48, 216, 20, 8, "#58d8ff");
+          pixel(ctx, 92, 212, 10, 10, "#ff5aa5");
+          pixel(ctx, 108, 212, 10, 10, "#95ff7b");
+          pixel(ctx, 70, 196, 22, 8, "#ffd05a");
+          pixel(ctx, 26, 364, 112, 12, "#4d3b74");
+          pixel(ctx, 74, 328, 12, 36, "#d8d0ef");
+          pixel(ctx, 86, 318, 24, 18, "#58d8ff");
+          pixel(ctx, 54, 336, 24, 28, "#95ff7b");
+          pixel(ctx, 34, 500, 100, 12, "#4d3b74");
+          pixel(ctx, 58, 472, 22, 22, "#ffd05a");
+          pixel(ctx, 66, 464, 6, 6, "#fff3b7");
+          pixel(ctx, 98, 464, 18, 30, "#2d2448");
+          break;
+        case "jam-left":
+          pixel(ctx, 26, 100, 106, 12, "#4d3b74");
+          pixel(ctx, 72, 28, 8, 72, "#d8d0ef");
+          pixel(ctx, 80, 28, 40, 20, "#ffd05a");
+          pixel(ctx, 50, 88, 16, 12, "#58d8ff");
+          pixel(ctx, 62, 76, 8, 8, "#ff5aa5");
+          pixel(ctx, 32, 252, 100, 12, "#4d3b74");
+          pixel(ctx, 58, 206, 28, 10, "#ffd05a");
+          pixel(ctx, 52, 216, 40, 12, "#ffd05a");
+          pixel(ctx, 48, 228, 48, 12, "#c98954");
+          pixel(ctx, 62, 240, 20, 12, "#8d83b0");
+          pixel(ctx, 24, 420, 112, 12, "#4d3b74");
+          pixel(ctx, 46, 392, 20, 20, "#ff5aa5");
+          pixel(ctx, 70, 378, 16, 34, "#58d8ff");
+          pixel(ctx, 94, 390, 18, 22, "#95ff7b");
+          break;
+        case "jam-right":
+          pixel(ctx, 34, 106, 102, 12, "#4d3b74");
+          pixel(ctx, 58, 74, 18, 24, "#ffd05a");
+          pixel(ctx, 80, 58, 12, 40, "#d8d0ef");
+          pixel(ctx, 92, 62, 24, 14, "#ff5aa5");
+          pixel(ctx, 44, 258, 92, 12, "#4d3b74");
+          pixel(ctx, 54, 230, 18, 18, "#ffd05a");
+          pixel(ctx, 76, 218, 24, 30, "#c98954");
+          pixel(ctx, 104, 236, 12, 12, "#8d83b0");
+          pixel(ctx, 26, 414, 112, 12, "#4d3b74");
+          pixel(ctx, 52, 382, 24, 24, "#58d8ff");
+          pixel(ctx, 82, 368, 18, 38, "#ffd05a");
+          pixel(ctx, 108, 388, 12, 18, "#95ff7b");
+          break;
+        case "focus-left":
+          pixel(ctx, 22, 114, 112, 34, "#2d2448");
+          pixel(ctx, 30, 122, 96, 18, "#171127");
+          pixel(ctx, 40, 128, 36, 4, "#58d8ff");
+          pixel(ctx, 40, 134, 50, 4, "#95ff7b");
+          pixel(ctx, 40, 140, 18, 4, "#ffd05a");
+          pixel(ctx, 50, 152, 44, 8, "#8d83b0");
+          pixel(ctx, 26, 282, 104, 12, "#4d3b74");
+          pixel(ctx, 48, 252, 54, 20, "#2d2448");
+          pixel(ctx, 56, 258, 12, 10, "#58d8ff");
+          pixel(ctx, 44, 262, 20, 8, "#58d8ff");
+          pixel(ctx, 88, 258, 10, 10, "#ff5aa5");
+          pixel(ctx, 104, 258, 10, 10, "#95ff7b");
+          pixel(ctx, 68, 242, 22, 8, "#ffd05a");
+          pixel(ctx, 24, 456, 108, 12, "#4d3b74");
+          pixel(ctx, 44, 426, 24, 22, "#58d8ff");
+          pixel(ctx, 74, 410, 18, 38, "#95ff7b");
+          pixel(ctx, 100, 424, 12, 24, "#ffd05a");
+          break;
+        case "focus-right":
+          pixel(ctx, 30, 112, 102, 12, "#4d3b74");
+          pixel(ctx, 48, 88, 22, 16, "#58d8ff");
+          pixel(ctx, 76, 72, 26, 32, "#95ff7b");
+          pixel(ctx, 108, 86, 12, 18, "#ffd05a");
+          pixel(ctx, 34, 292, 102, 12, "#4d3b74");
+          pixel(ctx, 60, 248, 52, 30, "#2d2448");
+          pixel(ctx, 68, 256, 36, 18, "#171127");
+          pixel(ctx, 74, 262, 18, 4, "#58d8ff");
+          pixel(ctx, 74, 268, 28, 4, "#95ff7b");
+          pixel(ctx, 74, 274, 12, 4, "#ffd05a");
+          pixel(ctx, 42, 466, 92, 12, "#4d3b74");
+          pixel(ctx, 56, 438, 18, 18, "#ff5aa5");
+          pixel(ctx, 80, 422, 14, 34, "#58d8ff");
+          pixel(ctx, 102, 434, 16, 22, "#95ff7b");
+          break;
+        case "contact-left":
+          pixel(ctx, 28, 124, 108, 12, "#4d3b74");
+          pixel(ctx, 42, 88, 26, 22, "#c98954");
+          pixel(ctx, 38, 84, 34, 12, "#ffd05a");
+          pixel(ctx, 86, 96, 18, 16, "#58d8ff");
+          pixel(ctx, 110, 100, 12, 12, "#95ff7b");
+          pixel(ctx, 34, 304, 100, 12, "#4d3b74");
+          pixel(ctx, 60, 260, 10, 44, "#d8d0ef");
+          pixel(ctx, 70, 250, 24, 16, "#58d8ff");
+          pixel(ctx, 54, 272, 32, 26, "#95ff7b");
+          pixel(ctx, 34, 492, 104, 12, "#4d3b74");
+          pixel(ctx, 58, 458, 20, 18, "#ffd05a");
+          pixel(ctx, 80, 444, 18, 32, "#ff5aa5");
+          pixel(ctx, 104, 458, 12, 18, "#58d8ff");
+          break;
+        case "contact-right":
+          pixel(ctx, 24, 122, 114, 12, "#4d3b74");
+          pixel(ctx, 48, 90, 44, 26, "#c98954");
+          pixel(ctx, 54, 96, 32, 16, "#ffd05a");
+          pixel(ctx, 58, 100, 24, 2, "#8a5d3a");
+          pixel(ctx, 92, 90, 40, 22, "#f3c86c");
+          pixel(ctx, 40, 300, 98, 12, "#4d3b74");
+          pixel(ctx, 62, 256, 8, 44, "#d8d0ef");
+          pixel(ctx, 56, 248, 20, 10, "#58d8ff");
+          pixel(ctx, 52, 268, 30, 24, "#95ff7b");
+          pixel(ctx, 36, 486, 102, 12, "#4d3b74");
+          pixel(ctx, 54, 454, 18, 20, "#58d8ff");
+          pixel(ctx, 80, 438, 18, 36, "#ffd05a");
+          pixel(ctx, 106, 456, 12, 18, "#95ff7b");
+          break;
+        default:
+          break;
+      }
+    };
+
+    document.querySelectorAll(".pixel-scene-canvas").forEach(drawScene);
   </script>
 </body>
 </html>
