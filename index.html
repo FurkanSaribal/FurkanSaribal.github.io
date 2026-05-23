@@ -3,14 +3,16 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Furkan Sarıbal | Oyun Geliştirici</title>
+  <title id="page-title">Furkan Sarıbal | Oyun Geliştirici</title>
   <meta
+    id="meta-description"
     name="description"
     content="Furkan Sarıbal'ın oyun geliştirme odaklı, pixel art estetiği taşıyan kişisel portföyü."
   />
   <meta name="theme-color" content="#161223" />
-  <meta property="og:title" content="Furkan Sarıbal | Oyun Geliştirici" />
+  <meta id="og-title" property="og:title" content="Furkan Sarıbal | Oyun Geliştirici" />
   <meta
+    id="og-description"
     property="og:description"
     content="Pixel art oyun arayüzü gibi tasarlanmış kişisel portföy sayfası."
   />
@@ -186,17 +188,23 @@
       font-size: 0.95rem;
     }
 
-    .nav-links, .hero-actions, .quick-badges, .tag-list {
+    .nav-actions, .nav-links, .hero-actions, .quick-badges, .tag-list {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
+    }
+
+    .nav-actions {
+      align-items: center;
+      justify-content: flex-end;
+      margin-left: auto;
     }
 
     .hero-actions {
       margin-top: 34px;
     }
 
-    .nav-chip, .hud-button, .quick-badges span {
+    .nav-chip, .hud-button, .quick-badges span, .lang-toggle {
       font-family: var(--pixel-font);
       text-transform: uppercase;
       letter-spacing: 0.04em;
@@ -213,10 +221,43 @@
       transition: transform 0.18s ease, background-color 0.18s ease;
     }
 
+    .lang-switch {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px;
+      background: #171127;
+      box-shadow: 0 0 0 3px #0d0b16, 0 0 0 5px rgba(79, 68, 121, 0.9);
+    }
+
+    .lang-toggle {
+      min-width: 46px;
+      padding: 8px 10px;
+      background: transparent;
+      color: var(--muted);
+      box-shadow: none;
+      cursor: pointer;
+    }
+
+    .lang-toggle:hover,
+    .lang-toggle:focus-visible {
+      transform: translate(-1px, -1px);
+      color: var(--text);
+      outline: none;
+    }
+
+    .lang-toggle.is-active {
+      background: linear-gradient(180deg, #ffe08a, var(--gold));
+      color: #140f20;
+      box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.18);
+    }
+
     .nav-chip:hover,
     .nav-chip:focus-visible,
     .hud-button:hover,
-    .hud-button:focus-visible {
+    .hud-button:focus-visible,
+    .lang-toggle.is-active:hover,
+    .lang-toggle.is-active:focus-visible {
       transform: translate(-2px, -2px);
       outline: none;
     }
@@ -602,10 +643,18 @@
       .section-side-art { display: none; }
       .hero-grid, .project-grid, .contact-grid, .project-info-grid { grid-template-columns: 1fr; }
       .pixel-nav { flex-direction: column; align-items: start; }
+      .nav-actions {
+        width: 100%;
+        display: grid;
+        gap: 12px;
+      }
       .nav-links {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
         width: 100%;
+      }
+      .lang-switch {
+        justify-self: end;
       }
       .nav-chip { width: 100%; }
       .section-head { align-items: start; flex-direction: column; }
@@ -616,6 +665,9 @@
       .pixel-nav, .hero-card, .hud-card, .section-panel, .footer-bar { padding: 18px; }
       .nav-chip, .hud-button { width: 100%; }
       .hero-actions, .nav-links { display: grid; grid-template-columns: 1fr; }
+      .lang-switch {
+        width: auto;
+      }
       .brand-copy h1 { font-size: 1.2rem; }
       .pixel-divider { height: 28px; }
       .section-title-row { gap: 10px; }
@@ -648,22 +700,29 @@
         <div class="avatar-box" aria-hidden="true">FS</div>
         <div class="brand-copy">
           <h1>Furkan Sarıbal</h1>
-          <p>Oyun geliştirici / yazılım mühendisliği öğrencisi</p>
+          <p data-i18n="brandRole">Oyun geliştirici / yazılım mühendisliği öğrencisi</p>
         </div>
       </div>
 
-      <nav class="nav-links" aria-label="Ana menü">
-        <a class="nav-chip" href="#projeler">Projeler</a>
-        <a class="nav-chip" href="#profil">Jam Yolculuğu</a>
-        <a class="nav-chip" href="#questlog">Teknik Odaklar</a>
-        <a class="nav-chip" href="#iletisim">İletişim</a>
-      </nav>
+      <div class="nav-actions">
+        <nav class="nav-links" aria-label="Ana menü" data-i18n="navAriaLabel" data-i18n-attr="aria-label">
+          <a class="nav-chip" href="#projeler" data-i18n="navProjects">Projeler</a>
+          <a class="nav-chip" href="#profil" data-i18n="navJam">Jam Yolculuğu</a>
+          <a class="nav-chip" href="#questlog" data-i18n="navFocus">Teknik Odaklar</a>
+          <a class="nav-chip" href="#iletisim" data-i18n="navContact">İletişim</a>
+        </nav>
+
+        <div class="lang-switch" role="group" aria-label="Dil seçimi" data-i18n="langSwitchLabel" data-i18n-attr="aria-label">
+          <button type="button" class="lang-toggle is-active" data-lang="tr" aria-pressed="true">TR</button>
+          <button type="button" class="lang-toggle" data-lang="en" aria-pressed="false" lang="en">EN</button>
+        </div>
+      </div>
     </header>
 
     <section id="giris" class="hero-grid">
       <article class="pixel-panel hero-card">
-        <h2 class="hero-title">Oyun Geliştirme Portföyü</h2>
-        <p>
+        <h2 class="hero-title" data-i18n="heroTitle">Oyun Geliştirme Portföyü</h2>
+        <p data-i18n="heroIntro">
           Erciyes Üniversitesi'nde yazılım mühendisliği okuyorum. Oyun geliştirme tarafında
           özellikle Unity ile prototip üretme, oynanış akışını test etme ve level design üzerine çalışıyorum.
           Bu sayfada projelerimi ve jam deneyimlerimi toplu şekilde gösteriyorum.
@@ -671,24 +730,25 @@
         <div class="hero-actions">
           <a class="hud-button primary" href="#projeler">
             <i class="bi bi-controller"></i>
-            Oyunları incele
+            <span data-i18n="heroPrimaryAction">Oyunları incele</span>
           </a>
-          <a class="hud-button secondary" href="https://starters-pack.itch.io/" target="_blank" rel="noreferrer" lang="en">
+          <a class="hud-button secondary" href="https://starters-pack.itch.io/" target="_blank" rel="noreferrer">
             <i class="bi bi-box-arrow-up-right"></i>
-            itch.io sayfası
+            <span lang="en">itch.io</span>
+            <span data-i18n="heroSecondaryAction">sayfası</span>
           </a>
         </div>
       </article>
 
-      <aside class="pixel-panel hud-card" aria-label="Oyuncu durumu">
+      <aside class="pixel-panel hud-card" aria-label="Oyuncu durumu" data-i18n="hudAriaLabel" data-i18n-attr="aria-label">
         <div class="hud-header">
-          <h2 class="hud-title">Oyuncu Bilgisi</h2>
-          <span class="status-pill" lang="en">Online</span>
+          <h2 class="hud-title" data-i18n="hudTitle">Oyuncu Bilgisi</h2>
+          <span class="status-pill" data-i18n="hudStatus">Aktif</span>
         </div>
 
         <div>
-          <div class="mini-label">Enerji</div>
-          <div class="hearts-row" aria-label="Can göstergesi">
+          <div class="mini-label" data-i18n="energyLabel">Enerji</div>
+          <div class="hearts-row" aria-label="Enerji göstergesi" data-i18n="energyAriaLabel" data-i18n-attr="aria-label">
             <i class="bi bi-lightning-charge-fill"></i>
             <i class="bi bi-lightning-charge-fill"></i>
             <i class="bi bi-lightning-charge-fill"></i>
@@ -697,42 +757,42 @@
               <i class="bi bi-lightning-charge"></i>
               <i class="bi bi-lightning-charge-fill"></i>
             </span>
-            <span class="energy-text">4.5 / 5 enerji</span>
+            <span class="energy-text" data-i18n="energyText">4.5 / 5 enerji</span>
           </div>
         </div>
 
         <div class="stat-box">
           <div class="stat-top">
-            <span>Can</span>
+            <span data-i18n="statHealth">Can</span>
             <span>%86</span>
           </div>
-          <div class="progress pixel-progress" role="progressbar" aria-label="Can" aria-valuenow="86" aria-valuemin="0" aria-valuemax="100">
+          <div class="progress pixel-progress" role="progressbar" aria-label="Can" aria-valuenow="86" aria-valuemin="0" aria-valuemax="100" data-i18n="statHealth" data-i18n-attr="aria-label">
             <div class="progress-bar bar-hp" style="width: 86%"></div>
           </div>
         </div>
 
         <div class="stat-box">
           <div class="stat-top">
-            <span>Mana</span>
+            <span data-i18n="statMana">Mana</span>
             <span>%89</span>
           </div>
-          <div class="progress pixel-progress" role="progressbar" aria-label="Mana" aria-valuenow="89" aria-valuemin="0" aria-valuemax="100">
+          <div class="progress pixel-progress" role="progressbar" aria-label="Mana" aria-valuenow="89" aria-valuemin="0" aria-valuemax="100" data-i18n="statMana" data-i18n-attr="aria-label">
             <div class="progress-bar bar-xp" style="width: 89%"></div>
           </div>
         </div>
 
         <div class="stat-box">
           <div class="stat-top">
-            <span>XP</span>
+            <span data-i18n="statXp">XP</span>
             <span>%74</span>
           </div>
-          <div class="progress pixel-progress" role="progressbar" aria-label="XP" aria-valuenow="74" aria-valuemin="0" aria-valuemax="100">
+          <div class="progress pixel-progress" role="progressbar" aria-label="XP" aria-valuenow="74" aria-valuemin="0" aria-valuemax="100" data-i18n="statXp" data-i18n-attr="aria-label">
             <div class="progress-bar bar-skill" style="width: 74%"></div>
           </div>
         </div>
 
         <div>
-          <div class="mini-label">Araçlar</div>
+          <div class="mini-label" data-i18n="toolsLabel">Araçlar</div>
           <div class="quick-badges">
             <span lang="en">Unity</span>
             <span lang="en">C#</span>
@@ -749,7 +809,7 @@
           <div>
             <div class="section-title-row">
               <span class="section-pixel-icon" aria-hidden="true"><i class="bi bi-controller"></i></span>
-              <h2 id="missions-title">Projeler</h2>
+              <h2 id="missions-title" data-i18n="projectsTitle">Projeler</h2>
             </div>
           </div>
         </div>
@@ -766,16 +826,16 @@
                   </h3>
                   <span class="platform-chip">Android</span>
                 </div>
-                <p>
+                <p data-i18n="projectSudokuDesc">
                   Sudoku mantığını blok yerleştirme yapısıyla birleştiren mobil bulmaca denemesi.
                   Temel odak, tahtayı açık tutup alan temizleme ve skor üretme hissini kurmaktı.
                 </p>
-                <div class="project-info-grid" aria-label="Sudoku Block Blast detayları">
+                <div class="project-info-grid" aria-label="Sudoku Block Blast detayları" data-i18n="projectSudokuAria" data-i18n-attr="aria-label">
                   <div class="project-info-card">
-                    <div class="project-info-value" lang="en">Gameplay programmer</div>
+                    <div class="project-info-value" data-i18n="projectSudokuRolePrimary">Oynanış programlama</div>
                   </div>
                   <div class="project-info-card">
-                    <div class="project-info-value">Bulmaca sistemi</div>
+                    <div class="project-info-value" data-i18n="projectSudokuRoleSecondary">Bulmaca sistemi</div>
                   </div>
                 </div>
               </article>
@@ -790,16 +850,16 @@
                   </h3>
                   <span class="platform-chip">Android</span>
                 </div>
-                <p>
+                <p data-i18n="projectGalacticDesc">
                   Tek elle oynanmaya uygun, hızlı tempolu bir aksiyon prototipi.
                   Düşman baskısı, yetenek açma ve hayatta kalma ritmi üzerine kuruluydu.
                 </p>
-                <div class="project-info-grid" aria-label="Galactic Striker detayları">
+                <div class="project-info-grid" aria-label="Galactic Striker detayları" data-i18n="projectGalacticAria" data-i18n-attr="aria-label">
                   <div class="project-info-card">
-                    <div class="project-info-value" lang="en">Character controller</div>
+                    <div class="project-info-value" data-i18n="projectGalacticRolePrimary">Karakter kontrolü</div>
                   </div>
                   <div class="project-info-card">
-                    <div class="project-info-value">Oynanış programlama</div>
+                    <div class="project-info-value" data-i18n="projectGalacticRoleSecondary">Oynanış programlama</div>
                   </div>
                 </div>
               </article>
@@ -814,16 +874,16 @@
                   </h3>
                   <span class="platform-chip">Windows</span>
                 </div>
-                <p>
+                <p data-i18n="projectSoulDesc">
                   Boğaziçi Game Jam '24 kapsamında ekip halinde geliştirilen bir macera projesi.
                   Kısa sürede oynanabilir çıktı hazırlamak ve ekip koordinasyonu açısından önemliydi.
                 </p>
-                <div class="project-info-grid" aria-label="Soul Knott detayları">
+                <div class="project-info-grid" aria-label="Soul Knott detayları" data-i18n="projectSoulAria" data-i18n-attr="aria-label">
                   <div class="project-info-card">
-                    <div class="project-info-value" lang="en">Character controller</div>
+                    <div class="project-info-value" data-i18n="projectSoulRolePrimary">Karakter kontrolü</div>
                   </div>
                   <div class="project-info-card">
-                    <div class="project-info-value">Animasyon</div>
+                    <div class="project-info-value" data-i18n="projectSoulRoleSecondary">Animasyon</div>
                   </div>
                 </div>
               </article>
@@ -838,19 +898,19 @@
                   </h3>
                   <span class="platform-chip">Windows</span>
                 </div>
-                <p>
+                <p data-i18n="projectIllusionDesc">
                   Kayseri TeknoJam kapsamında ekipçe geliştirilen bir projeydi.
                   Bu işte karakter kontrolü, animasyon ve 2D level design tarafında çalıştım.
                 </p>
-                <div class="project-info-grid" aria-label="Illusion Maze detayları">
+                <div class="project-info-grid" aria-label="Illusion Maze detayları" data-i18n="projectIllusionAria" data-i18n-attr="aria-label">
                   <div class="project-info-card">
-                    <div class="project-info-value" lang="en">Character controller</div>
+                    <div class="project-info-value" data-i18n="projectIllusionRolePrimary">Karakter kontrolü</div>
                   </div>
                   <div class="project-info-card">
-                    <div class="project-info-value">Animasyon</div>
+                    <div class="project-info-value" data-i18n="projectIllusionRoleSecondary">Animasyon</div>
                   </div>
                   <div class="project-info-card">
-                    <div class="project-info-value" lang="en">2D level design</div>
+                    <div class="project-info-value" data-i18n="projectIllusionRoleTertiary">2D seviye tasarımı</div>
                   </div>
                 </div>
               </article>
@@ -866,7 +926,7 @@
           <div>
             <div class="section-title-row">
               <span class="section-pixel-icon" aria-hidden="true"><i class="bi bi-flag"></i></span>
-              <h2 id="profile-title">Kısa Jam Kronolojisi</h2>
+              <h2 id="profile-title" data-i18n="jamTitle">Kısa Jam Kronolojisi</h2>
             </div>
           </div>
         </div>
@@ -875,14 +935,14 @@
           <div class="timeline">
               <article class="timeline-card">
                 <span class="timeline-title">Kayseri TeknoJam / Illusion Maze</span>
-                <p>
+                <p data-i18n="jamIllusionDesc">
                   Ekiple geliştirdiğimiz bu projede karakter kontrolü ve 2D level design tarafında yer aldım.
                 </p>
               </article>
 
               <article class="timeline-card">
                 <span class="timeline-title">Boğaziçi Game Jam '24 / Soul Knott</span>
-                <p>
+                <p data-i18n="jamSoulDesc">
                   Görev paylaşımı, kısa sürede karar alma ve oynanabilir bir çıktı hazırlama tarafında deneyim kazandım.
                 </p>
               </article>
@@ -898,7 +958,7 @@
           <div>
             <div class="section-title-row">
               <span class="section-pixel-icon" aria-hidden="true"><i class="bi bi-joystick"></i></span>
-              <h2 id="quest-title">Üzerinde Çalıştığım Kısımlar</h2>
+              <h2 id="quest-title" data-i18n="focusTitle">Üzerinde Çalıştığım Kısımlar</h2>
             </div>
           </div>
         </div>
@@ -906,22 +966,22 @@
         <div class="section-shell">
           <div class="timeline">
               <article class="timeline-card">
-                <span class="timeline-title">Karakter kontrolü</span>
-                <p>
+                <span class="timeline-title" data-i18n="focusControllerTitle">Karakter kontrolü</span>
+                <p data-i18n="focusControllerDesc">
                   Hareket, input tepkisi, kamera takibi ve oyuncunun karakterle kurduğu temel hissin ayarlanması.
                 </p>
               </article>
 
               <article class="timeline-card">
-                <span class="timeline-title">Oynanış programlama</span>
-                <p>
+                <span class="timeline-title" data-i18n="focusGameplayTitle">Oynanış programlama</span>
+                <p data-i18n="focusGameplayDesc">
                   Skor, yetenek, düşman davranışı, etkileşim ve oyun döngüsü gibi temel mekaniklerin kurulması.
                 </p>
               </article>
 
               <article class="timeline-card">
-                <span class="timeline-title">Level design desteği</span>
-                <p>
+                <span class="timeline-title" data-i18n="focusLevelTitle">Level design desteği</span>
+                <p data-i18n="focusLevelDesc">
                   Bölüm akışı, oyuncu yönlendirmesi ve sahnenin oynanabilirliğini destekleyen düzenlemeler.
                 </p>
               </article>
@@ -937,7 +997,7 @@
           <div>
             <div class="section-title-row">
               <span class="section-pixel-icon" aria-hidden="true"><i class="bi bi-send"></i></span>
-              <h2 id="coop-title">İletişim Bilgileri</h2>
+              <h2 id="coop-title" data-i18n="contactTitle">İletişim Bilgileri</h2>
             </div>
           </div>
         </div>
@@ -945,7 +1005,7 @@
         <div class="section-shell">
           <div class="contact-grid">
               <article class="contact-card">
-                <strong>E-posta</strong>
+                <strong data-i18n="contactEmailLabel">E-posta</strong>
                 <p><a href="mailto:furkansaribalbus@gmail.com">furkansaribalbus@gmail.com</a></p>
               </article>
 
@@ -982,7 +1042,7 @@
     </div>
 
     <footer class="pixel-panel footer-bar">
-      © <span id="yil"></span> Furkan Sarıbal / Continue? Yes
+      © <span id="yil"></span> Furkan Sarıbal / <span data-i18n="footerContinue">Devam? Evet</span>
     </footer>
   </main>
 
@@ -1203,6 +1263,189 @@
     };
 
     document.querySelectorAll(".pixel-scene-canvas").forEach(drawScene);
+
+    const translations = {
+      tr: {
+        metaTitle: "Furkan Sarıbal | Oyun Geliştirici",
+        metaDescription: "Furkan Sarıbal'ın oyun geliştirme odaklı, pixel art estetiği taşıyan kişisel portföyü.",
+        ogTitle: "Furkan Sarıbal | Oyun Geliştirici",
+        ogDescription: "Pixel art oyun arayüzü gibi tasarlanmış kişisel portföy sayfası.",
+        navAriaLabel: "Ana menü",
+        langSwitchLabel: "Dil seçimi",
+        brandRole: "Oyun geliştirici / yazılım mühendisliği öğrencisi",
+        navProjects: "Projeler",
+        navJam: "Jam Yolculuğu",
+        navFocus: "Teknik Odaklar",
+        navContact: "İletişim",
+        heroTitle: "Oyun Geliştirme Portföyü",
+        heroIntro: "Erciyes Üniversitesi'nde yazılım mühendisliği okuyorum. Oyun geliştirme tarafında özellikle Unity ile prototip üretme, oynanış akışını test etme ve level design üzerine çalışıyorum. Bu sayfada projelerimi ve jam deneyimlerimi toplu şekilde gösteriyorum.",
+        heroPrimaryAction: "Oyunları incele",
+        heroSecondaryAction: "sayfası",
+        hudAriaLabel: "Oyuncu durumu",
+        hudTitle: "Oyuncu Bilgisi",
+        hudStatus: "Aktif",
+        energyLabel: "Enerji",
+        energyAriaLabel: "Enerji göstergesi",
+        energyText: "4.5 / 5 enerji",
+        statHealth: "Can",
+        statMana: "Mana",
+        statXp: "XP",
+        toolsLabel: "Araçlar",
+        projectsTitle: "Projeler",
+        projectSudokuDesc: "Sudoku mantığını blok yerleştirme yapısıyla birleştiren mobil bulmaca denemesi. Temel odak, tahtayı açık tutup alan temizleme ve skor üretme hissini kurmaktı.",
+        projectSudokuAria: "Sudoku Block Blast detayları",
+        projectSudokuRolePrimary: "Oynanış programlama",
+        projectSudokuRoleSecondary: "Bulmaca sistemi",
+        projectGalacticDesc: "Tek elle oynanmaya uygun, hızlı tempolu bir aksiyon prototipi. Düşman baskısı, yetenek açma ve hayatta kalma ritmi üzerine kuruluydu.",
+        projectGalacticAria: "Galactic Striker detayları",
+        projectGalacticRolePrimary: "Karakter kontrolü",
+        projectGalacticRoleSecondary: "Oynanış programlama",
+        projectSoulDesc: "Boğaziçi Game Jam '24 kapsamında ekip halinde geliştirilen bir macera projesi. Kısa sürede oynanabilir çıktı hazırlamak ve ekip koordinasyonu açısından önemliydi.",
+        projectSoulAria: "Soul Knott detayları",
+        projectSoulRolePrimary: "Karakter kontrolü",
+        projectSoulRoleSecondary: "Animasyon",
+        projectIllusionDesc: "Kayseri TeknoJam kapsamında ekipçe geliştirilen bir projeydi. Bu işte karakter kontrolü, animasyon ve 2D level design tarafında çalıştım.",
+        projectIllusionAria: "Illusion Maze detayları",
+        projectIllusionRolePrimary: "Karakter kontrolü",
+        projectIllusionRoleSecondary: "Animasyon",
+        projectIllusionRoleTertiary: "2D seviye tasarımı",
+        jamTitle: "Kısa Jam Kronolojisi",
+        jamIllusionDesc: "Ekiple geliştirdiğimiz bu projede karakter kontrolü ve 2D level design tarafında yer aldım.",
+        jamSoulDesc: "Görev paylaşımı, kısa sürede karar alma ve oynanabilir bir çıktı hazırlama tarafında deneyim kazandım.",
+        focusTitle: "Üzerinde Çalıştığım Kısımlar",
+        focusControllerTitle: "Karakter kontrolü",
+        focusControllerDesc: "Hareket, input tepkisi, kamera takibi ve oyuncunun karakterle kurduğu temel hissin ayarlanması.",
+        focusGameplayTitle: "Oynanış programlama",
+        focusGameplayDesc: "Skor, yetenek, düşman davranışı, etkileşim ve oyun döngüsü gibi temel mekaniklerin kurulması.",
+        focusLevelTitle: "Level design desteği",
+        focusLevelDesc: "Bölüm akışı, oyuncu yönlendirmesi ve sahnenin oynanabilirliğini destekleyen düzenlemeler.",
+        contactTitle: "İletişim Bilgileri",
+        contactEmailLabel: "E-posta",
+        footerContinue: "Devam? Evet"
+      },
+      en: {
+        metaTitle: "Furkan Sarıbal | Game Developer",
+        metaDescription: "Furkan Sarıbal's personal portfolio focused on game development with a pixel-art aesthetic.",
+        ogTitle: "Furkan Sarıbal | Game Developer",
+        ogDescription: "A personal portfolio page designed like a pixel-art game interface.",
+        navAriaLabel: "Main menu",
+        langSwitchLabel: "Language selection",
+        brandRole: "Game developer / software engineering student",
+        navProjects: "Projects",
+        navJam: "Jam Journey",
+        navFocus: "Technical Focus",
+        navContact: "Contact",
+        heroTitle: "Game Development Portfolio",
+        heroIntro: "I'm studying software engineering at Erciyes University. On the game development side, I focus on building prototypes in Unity, testing gameplay flow, and working on level design. This page brings together my projects and jam experience in one place.",
+        heroPrimaryAction: "View projects",
+        heroSecondaryAction: "page",
+        hudAriaLabel: "Player status",
+        hudTitle: "Player Info",
+        hudStatus: "Online",
+        energyLabel: "Energy",
+        energyAriaLabel: "Energy indicator",
+        energyText: "4.5 / 5 energy",
+        statHealth: "HP",
+        statMana: "Mana",
+        statXp: "XP",
+        toolsLabel: "Tools",
+        projectsTitle: "Projects",
+        projectSudokuDesc: "A mobile puzzle prototype that combines sudoku logic with block placement. The main focus was building a satisfying board-clearing and score-generation loop.",
+        projectSudokuAria: "Sudoku Block Blast details",
+        projectSudokuRolePrimary: "Gameplay programming",
+        projectSudokuRoleSecondary: "Puzzle systems",
+        projectGalacticDesc: "A fast-paced action prototype designed for one-handed play. It was built around enemy pressure, ability progression, and survival rhythm.",
+        projectGalacticAria: "Galactic Striker details",
+        projectGalacticRolePrimary: "Character controller",
+        projectGalacticRoleSecondary: "Gameplay programming",
+        projectSoulDesc: "A team-made adventure project developed for Boğaziçi Game Jam '24. Delivering a playable build quickly and coordinating as a team were key parts of the process.",
+        projectSoulAria: "Soul Knott details",
+        projectSoulRolePrimary: "Character controller",
+        projectSoulRoleSecondary: "Animation",
+        projectIllusionDesc: "A team project developed during Kayseri TeknoJam. I worked on character control, animation support, and 2D level design.",
+        projectIllusionAria: "Illusion Maze details",
+        projectIllusionRolePrimary: "Character controller",
+        projectIllusionRoleSecondary: "Animation",
+        projectIllusionRoleTertiary: "2D level design",
+        jamTitle: "Jam Journey",
+        jamIllusionDesc: "In this team-made project, I contributed to character control and 2D level design.",
+        jamSoulDesc: "I gained experience in task sharing, quick decision-making, and preparing a playable build under tight time constraints.",
+        focusTitle: "Technical Focus",
+        focusControllerTitle: "Character controller",
+        focusControllerDesc: "Tuning movement, input response, camera follow, and the core feel of how the player connects with the character.",
+        focusGameplayTitle: "Gameplay programming",
+        focusGameplayDesc: "Building core mechanics such as score systems, abilities, enemy behavior, interactions, and the gameplay loop.",
+        focusLevelTitle: "Level design support",
+        focusLevelDesc: "Improving stage flow, player guidance, and layout decisions that support overall playability.",
+        contactTitle: "Contact",
+        contactEmailLabel: "Email",
+        footerContinue: "Continue? Yes"
+      }
+    };
+
+    const pageTitle = document.getElementById("page-title");
+    const metaDescription = document.getElementById("meta-description");
+    const ogTitle = document.getElementById("og-title");
+    const ogDescription = document.getElementById("og-description");
+    const langButtons = Array.from(document.querySelectorAll(".lang-toggle"));
+    const translationNodes = Array.from(document.querySelectorAll("[data-i18n]"));
+    const languageStorageKey = "portfolio-language";
+
+    const setLanguage = (lang) => {
+      const copy = translations[lang] ?? translations.tr;
+
+      document.documentElement.lang = lang;
+      document.title = copy.metaTitle;
+      pageTitle.textContent = copy.metaTitle;
+      metaDescription.setAttribute("content", copy.metaDescription);
+      ogTitle.setAttribute("content", copy.ogTitle);
+      ogDescription.setAttribute("content", copy.ogDescription);
+
+      translationNodes.forEach((node) => {
+        const key = node.dataset.i18n;
+        const value = copy[key];
+        if (!value) return;
+
+        const attr = node.dataset.i18nAttr;
+        if (attr) {
+          node.setAttribute(attr, value);
+          return;
+        }
+
+        node.textContent = value;
+      });
+
+      langButtons.forEach((button) => {
+        const isActive = button.dataset.lang === lang;
+        button.classList.toggle("is-active", isActive);
+        button.setAttribute("aria-pressed", String(isActive));
+      });
+
+      localStorage.setItem(languageStorageKey, lang);
+    };
+
+    const detectPreferredLanguage = () => {
+      const browserLanguages = Array.isArray(navigator.languages) && navigator.languages.length > 0
+        ? navigator.languages
+        : [navigator.language];
+
+      return browserLanguages.some((language) => language.toLowerCase().startsWith("tr")) ? "tr" : "en";
+    };
+
+    const initialLanguage = (() => {
+      const savedLanguage = localStorage.getItem(languageStorageKey);
+      if (savedLanguage === "tr" || savedLanguage === "en") {
+        return savedLanguage;
+      }
+
+      return detectPreferredLanguage();
+    })();
+
+    langButtons.forEach((button) => {
+      button.addEventListener("click", () => setLanguage(button.dataset.lang));
+    });
+
+    setLanguage(initialLanguage);
   </script>
 </body>
 </html>
